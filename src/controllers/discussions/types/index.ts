@@ -347,12 +347,12 @@ export interface DiscussionPostReports {
 		containerType: string
 		count: number
 		postId: `${ number }`
-		userInfo: {
+		userInfo: Array<{
 			avatarUrl: string
 			badgePermission: string
 			id: `${ number }`
 			name: string
-		}[]
+		}>
 	} ]
 }
 

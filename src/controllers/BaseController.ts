@@ -1,5 +1,10 @@
-import type { BaseEndpoint, RequestManager } from '@wikiscript/core'
+import { type BaseEndpoint, type RequestManager, sleep } from '@wikiscript/core'
 import type { Fandom } from '../strategies'
+
+interface POSTOptions {
+	contentType?: 'application/json'
+	query?: Record<string, string>
+}
 
 export abstract class BaseController<Endpoint extends BaseEndpoint<Fandom>> {
 	public abstract readonly controller: string
@@ -33,32 +38,32 @@ export abstract class BaseController<Endpoint extends BaseEndpoint<Fandom>> {
 		return new URL( `?${ searchParams }`, this.endpoint.url )
 	}
 
-	protected post( body: Record<string, unknown>, contentType?: 'application/json' ): ReturnType<RequestManager[ 'raw' ]>
-	protected post( body: Record<string, string>, contentType?: string ): ReturnType<RequestManager[ 'raw' ]>
-	protected post( body: Record<string, string> | Record<string, unknown>, contentType?: string ): ReturnType<RequestManager[ 'raw' ]> {
-		let requestBody: string | FormData
-		const headers: Record<string, string | undefined> = {
-			'content-type': contentType ?? 'application/x-www-form-urlencoded'
-		}
+	protected post( { method, ...body }: Record<string, unknown> & { method: string }, options: POSTOptions = {} ): ReturnType<RequestManager[ 'raw' ]> {
+		const searchParams = new URLSearchParams( {
+			controller: this.controller,
+			method,
+			...options.query
+		} ).toString()
+		const url = new URL( `?${ searchParams }`, this.endpoint.url )
 
-		let { url } = this.endpoint
-		if ( contentType === 'application/json' && !( body instanceof FormData ) ) {
-			const { method, ...json } = body
-			requestBody = JSON.stringify( json )
-			url = new URL( `?controller=${ this.controller }&method=${ method }`, url )
+		let requestBody: string
+		if ( options.contentType === 'application/json' ) {
+			requestBody = JSON.stringify( body )
 		} else {
 			requestBody = new URLSearchParams( body as Record<string, string> ).toString()
 		}
 
 		return this.raw( url, {
 			body: requestBody,
-			headers,
+			headers: {
+				'content-type': options.contentType ?? 'application/x-www-form-urlencoded'
+			},
 			method: 'POST'
 		} )
 	}
 
-	protected raw( url: string | URL, fetchOptions: NonNullable<Parameters<RequestManager[ 'raw' ]>[ 1 ]> ): ReturnType<RequestManager[ 'raw' ]> {
-		return this.request.raw(
+	protected async raw( url: string | URL, fetchOptions: NonNullable<Parameters<RequestManager[ 'raw' ]>[ 1 ]>, throttle = 2000 ): ReturnType<RequestManager[ 'raw' ]> {
+		const req = await this.request.raw(
 			url,
 			{
 				headers: {
@@ -68,5 +73,15 @@ export abstract class BaseController<Endpoint extends BaseEndpoint<Fandom>> {
 			},
 			{ cookieUrl: this.endpoint.wiki.platform.services }
 		)
+
+		if ( req.statusCode === 429 && throttle < 35000 ) {
+			console.log( `Sleeping for ${ throttle }ms.` )
+			await sleep( throttle )
+			return this.raw( url, fetchOptions, throttle * 2 )
+		} else if ( req.statusCode === 429 ) {
+			throw new Error( 'Too many requests.' )
+		}
+
+		return req
 	}
 }

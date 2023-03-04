@@ -1,6 +1,6 @@
 import type { WikiaEndpoint } from '../../endpoints'
 import { BaseController } from '../BaseController'
-import { DiscussionThreadBody, DiscussionThreadList } from './types'
+import type { DiscussionThreadBody, DiscussionThreadList } from './types'
 
 export type CreateThreadOptions = {
 	articleIds?: Array<`${ number }`>

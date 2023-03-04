@@ -1,6 +1,6 @@
 import type { WikiaEndpoint } from '../../endpoints'
 import { BaseController } from '../BaseController'
-import { DiscussionPostList, DiscussionReply } from './types'
+import type { DiscussionPostList, DiscussionReply } from './types'
 
 export type CreateReplyOptions = {
 	attachments?: Record<string, unknown>
@@ -23,7 +23,7 @@ export class DiscussionPostController extends BaseController<WikiaEndpoint> {
 			...options,
 			jsonModel: options.jsonModel ? JSON.stringify( options.jsonModel ) : undefined,
 			method: 'create'
-		}, 'application/json' )
+		}, { contentType: 'application/json' } )
 		return req.body.json() as Promise<DiscussionReply>
 	}
 

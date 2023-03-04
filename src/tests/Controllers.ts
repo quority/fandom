@@ -10,12 +10,17 @@ describe( 'Controllers', () => {
 	let wikiId = 0
 
 	before( async function() {
-		this.timeout( 5000 )
+		this.timeout( 8000 )
 		await wiki.platform.login( env.FANDOM_USERNAME, env.FANDOM_PASSWORD )
 		wikiId = await wiki.platform.getWikiId()
 	} )
 
-	describe( '#ArticleComments', () => {
+	beforeEach( function( done ) {
+		this.timeout( 3000 )
+		setTimeout( done, 2000 )
+	} )
+
+	describe( 'ArticleCommentsController', () => {
 		const controller = wiki.custom.wikia.ArticleComments
 
 		const title = 'ArticleCommentsController'
@@ -461,7 +466,7 @@ describe( 'Controllers', () => {
 		} )
 	} )
 
-	describe.only( 'MessageWallController', () => {
+	describe( 'MessageWallController', () => {
 		const controller = wiki.custom.wikia.MessageWallController
 		let postId: `${ number }`
 		let userId: number

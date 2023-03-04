@@ -113,7 +113,6 @@ export class ArticleCommentsController extends BaseController<WikiaEndpoint> {
 		options.attachments ??= ArticleCommentsController.attachmentsDefault
 		const req = await this.post( {
 			attachments: JSON.stringify( options.attachments ),
-			controller: this.controller,
 			jsonModel: JSON.stringify( options.jsonModel ),
 			method: 'postNewCommentThread',
 			namespace: `${ options.namespace }`,

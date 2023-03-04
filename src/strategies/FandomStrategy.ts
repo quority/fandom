@@ -1,10 +1,12 @@
 import { BaseStrategy, type RequestManager, type TokensResponse, type Wiki } from '@wikiscript/core'
-import { s } from '@sapphire/shapeshift'
 import { InvalidInterwikiError } from '../errors'
+import { s } from '@sapphire/shapeshift'
 import { WikiaEndpoint } from '../endpoints'
 
 export class Fandom extends BaseStrategy {
-	public static override cookieRegexes = [ /session/i, /csrf_token/ ]
+	public static override cookieRegexes = [
+		/session/i, /csrf_token/
+	]
 
 	public static readonly InterwikiRegex = /^([a-z-]{2,5}\.)?[a-z0-9-]+$/
 	public readonly InterwikiRegex = Fandom.InterwikiRegex
@@ -65,7 +67,9 @@ export class Fandom extends BaseStrategy {
 
 	public static interwiki2base( interwiki: string ): URL {
 		if ( interwiki.match( /^[a-z0-9-]+\.[a-z0-9-]+/i ) ) {
-			const [ lang, name ] = interwiki.split( '.' )
+			const [
+				lang, name
+			] = interwiki.split( '.' )
 			return new URL( `https://${ name }.fandom.com/${ lang }/` )
 		} else if ( interwiki.match( /^[a-z0-9-]+$/i ) ) {
 			return new URL( `https://${ interwiki }.fandom.com/` )

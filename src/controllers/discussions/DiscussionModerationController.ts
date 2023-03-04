@@ -1,6 +1,6 @@
 import type { WikiaEndpoint } from '../../endpoints'
 import { BaseController } from '../BaseController'
-import { DiscussionPostReports, DiscussionReportedPosts } from './types'
+import type { DiscussionPostReports, DiscussionReportedPosts } from './types'
 
 export class DiscussionModerationController extends BaseController<WikiaEndpoint> {
 	public readonly controller = 'DiscussionModeration'
