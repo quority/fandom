@@ -17,7 +17,7 @@ describe( 'Controllers', () => {
 
 	beforeEach( function( done ) {
 		this.timeout( 3000 )
-		setTimeout( done, 2000 )
+		setTimeout( done, 1500 )
 	} )
 
 	describe( 'ArticleCommentsController', () => {
@@ -175,11 +175,6 @@ describe( 'Controllers', () => {
 	} )
 
 	describe( 'DiscussionForumController', () => {
-		beforeEach( function( done ) {
-			this.timeout( 3000 )
-			setTimeout( done, 2000 )
-		} )
-
 		const controller = wiki.custom.wikia.DiscussionForum
 		const createdForums: Array<{
 			id: `${ number }`
