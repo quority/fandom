@@ -1,9 +1,11 @@
+export interface CreationDate {
+	epochSecond: number
+	nano: number
+}
+
 export interface ArticleCommentsBody {
 	containerId: `${ number }`
-	creationDate: {
-		epochSecond: number
-		nano: number
-	}
+	creationDate: CreationDate
 	firstPost: {
 		attachments: {
 			atMentions: unknown[]
@@ -96,7 +98,7 @@ export interface DiscussionPost {
 		id: `${ number }`
 		name: string
 	}
-	creationDate: ArticleCommentsBody[ 'firstPost' ][ 'creationDate' ]
+	creationDate: CreationDate
 	creatorId: `${ number }`
 	creatorIp: string
 	id: `${ number }`
@@ -106,7 +108,7 @@ export interface DiscussionPost {
 	isReported: boolean
 	jsonModel: unknown | null
 	latestRevisionId: `${ number }`
-	modificationDate: ArticleCommentsBody[ 'firstPost' ][ 'creationDate' ] | null
+	modificationDate: CreationDate | null
 	position: number
 	rawContent: string
 	renderedContent: unknown | null
@@ -140,7 +142,7 @@ export interface DiscussionThreadBody {
 		id: `${ number }`
 		name: string
 	}
-	creationDate: ArticleCommentsBody[ 'firstPost' ][ 'creationDate' ]
+	creationDate: CreationDate
 	firstPostId: `${ number }`
 	forumId: `${ number }`
 	forumName: string
@@ -154,7 +156,7 @@ export interface DiscussionThreadBody {
 	jsonModel: unknown | null
 	lastPostId: `${ number }`
 	latestRevisionId: `${ number }`
-	modificationDate: ArticleCommentsBody[ 'firstPost' ][ 'creationDate' ]
+	modificationDate: CreationDate
 	postCount: number
 	rawContent: string
 	renderedContent: unknown | null
@@ -181,7 +183,7 @@ export interface DiscussionForumBody {
 		'doc:threads': DiscussionThreadBody[]
 	}
 	allowsThreads: boolean
-	creationDate: ArticleCommentsBody[ 'firstPost' ][ 'creationDate' ]
+	creationDate: CreationDate
 	creatorId: `${ number }`
 	description: string | null
 	displayOrder: number
@@ -192,7 +194,7 @@ export interface DiscussionForumBody {
 	isLocked: boolean
 	latestContribution: {
 		author: number | null
-		date: ArticleCommentsBody[ 'firstPost' ][ 'creationDate' ] | null
+		date: CreationDate | null
 		item: string | null
 		itemId: number | null
 		forumId: number | null
@@ -270,7 +272,7 @@ export interface DiscussionReportedPosts {
 				} ]
 				contentImages: unknown[]
 				latestRevision: [ {
-					creationDate: ArticleCommentsBody[ 'firstPost' ][ 'creationDate' ]
+					creationDate: CreationDate
 					creatorId: `${ number }`
 					creatorIp: string
 					id: `${ number }`
@@ -304,7 +306,7 @@ export interface DiscussionReportedPosts {
 				id: `${ number }`
 				name: string
 			}
-			creationDate: ArticleCommentsBody[ 'firstPost' ][ 'creationDate' ]
+			creationDate: CreationDate
 			creatorId: `${ number }`
 			creatorIp: string
 			forumId: `${ number }`
@@ -317,7 +319,7 @@ export interface DiscussionReportedPosts {
 			isReported: boolean
 			jsonModel: unknown | null
 			latestRevisionId: `${ number }`
-			modificationDate: ArticleCommentsBody[ 'firstPost' ][ 'creationDate' ] | null
+			modificationDate: CreationDate | null
 			position: number
 			rawContent: string
 			renderedContent: unknown | null
@@ -380,7 +382,7 @@ export interface DiscussionReply {
 		name: string
 	}
 	createdIp: string
-	creationDate: ArticleCommentsBody[ 'firstPost' ][ 'creationDate' ]
+	creationDate: CreationDate
 	creatorId: `${ number }`
 	id: `${ number }`
 	isDeleted: boolean
