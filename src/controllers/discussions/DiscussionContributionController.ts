@@ -1,6 +1,6 @@
-import type { WikiaEndpoint } from '../../endpoints'
-import { BaseController } from '../BaseController'
 import type { ArticleCommentsBody } from './types'
+import { BaseController } from '../BaseController'
+import type { WikiaEndpoint } from '../../endpoints'
 
 export class DiscussionContributionController extends BaseController<WikiaEndpoint> {
 	public readonly controller = 'DiscussionContribution'

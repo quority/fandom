@@ -1,5 +1,5 @@
-import type { WikiaEndpoint } from '../../endpoints'
 import { BaseController } from '../BaseController'
+import type { WikiaEndpoint } from '../../endpoints'
 
 export class FeedsAndPostsController extends BaseController<WikiaEndpoint> {
 	public readonly controller = 'FeedsAndPosts'

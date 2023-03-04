@@ -1,6 +1,6 @@
+import { ArticleCommentsController, DiscussionContributionController, DiscussionForumController, DiscussionLeaderboardController, DiscussionModerationController, DiscussionPermalinkController, DiscussionPollController, DiscussionPostController, DiscussionThreadController, DiscussionVoteController, FeedsAndPostsController, MessageWallController } from '../controllers'
 import { BaseEndpoint, type Wiki } from '@wikiscript/core'
 import type { Fandom } from '../strategies'
-import { ArticleCommentsController, DiscussionContributionController, DiscussionForumController, DiscussionLeaderboardController, DiscussionModerationController, DiscussionPermalinkController, DiscussionPollController, DiscussionPostController, DiscussionThreadController, DiscussionVoteController, FeedsAndPostsController, MessageWallController } from '../controllers'
 
 export class WikiaEndpoint extends BaseEndpoint<Fandom> {
 	public readonly ArticleComments: ArticleCommentsController

@@ -1,6 +1,6 @@
-import type { WikiaEndpoint } from '../../endpoints'
-import { BaseController } from '../BaseController'
 import type { ArticleCommentsBody, ArticleCommentsEdited, ArticleCommentsReply, ArticleCommentsResponse, ArticleCommentsThread } from './types'
+import { BaseController } from '../BaseController'
+import type { WikiaEndpoint } from '../../endpoints'
 
 export interface CommentOptions {
 	attachments?: Record<string, unknown>

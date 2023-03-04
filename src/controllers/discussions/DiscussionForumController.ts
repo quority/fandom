@@ -1,6 +1,6 @@
-import type { WikiaEndpoint } from '../../endpoints'
-import { BaseController } from '../BaseController'
 import type { DiscussionForumBody, DiscussionForums } from './types'
+import { BaseController } from '../BaseController'
+import type { WikiaEndpoint } from '../../endpoints'
 
 export interface CreateForumOptions {
 	name: string

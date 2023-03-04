@@ -1,6 +1,6 @@
-import type { WikiaEndpoint } from '../../endpoints'
 import { BaseController } from '../BaseController'
 import type { DiscussionThreadBody } from './types'
+import type { WikiaEndpoint } from '../../endpoints'
 
 export interface CreateWallReplyOptions {
 	attachments?: Record<string, unknown>
