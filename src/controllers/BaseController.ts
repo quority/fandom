@@ -75,7 +75,6 @@ export abstract class BaseController<Endpoint extends BaseEndpoint<Fandom>> {
 		)
 
 		if ( req.statusCode === 429 && throttle < 35000 ) {
-			console.log( `Sleeping for ${ throttle }ms.` )
 			await sleep( throttle )
 			return this.raw( url, fetchOptions, throttle * 2 )
 		} else if ( req.statusCode === 429 ) {
