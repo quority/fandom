@@ -1,0 +1,61 @@
+{
+  "name": "mw.js",
+  "version": "3.1.0",
+  "description": "Typed MediaWiki API client for node.js using TypeScript.",
+  "main": "dist/main.js",
+  "files": [
+    "dist/**",
+    "!dist/demo/**",
+    "!dist/tests/**"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/main.mjs",
+      "require": "./dist/main.js"
+    }
+  },
+  "types": "dist/main.d.ts",
+  "scripts": {
+    "build": "yarn tsc --listEmittedFiles --incremental",
+    "re-build": "rimraf tsconfig.tsbuildinfo dist && yarn tsc --listEmittedFiles --incremental",
+    "lint": "eslint src/ --ext .ts --cache",
+    "lint:fix": "eslint src/ --fix --ext .ts --cache",
+    "hooks": "husky install .github/husky",
+    "test": "mocha ./dist/tests/**/*.js"
+  },
+  "keywords": [
+    "Fandom",
+    "MediaWiki",
+    "MediaWiki API",
+    "wiki"
+  ],
+  "author": "bitomic",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bitomic/mwjs.git"
+  },
+  "homepage": "https://github.com/bitomic/mwjs#readme",
+  "devDependencies": {
+    "@types/form-data": "2.5.0",
+    "@types/fs-extra": "9.0.13",
+    "@types/mocha": "10.0.0",
+    "@types/node": "18.11.9",
+    "@types/tough-cookie": "4.0.2",
+    "@typescript-eslint/eslint-plugin": "5.43.0",
+    "@typescript-eslint/parser": "5.43.0",
+    "@wikiscript/core": "link:../mwjs",
+    "eslint": "8.27.0",
+    "husky": "8.0.2",
+    "lint-staged": "^13.0.3",
+    "mocha": "10.1.0",
+    "rimraf": "3.0.2",
+    "ts-dotenv": "^0.9.0",
+    "tsup": "^6.5.0",
+    "typescript": "4.8.4"
+  },
+  "packageManager": "yarn@3.2.4",
+  "dependencies": {
+    "@sapphire/shapeshift": "^3.8.1"
+  }
+}
