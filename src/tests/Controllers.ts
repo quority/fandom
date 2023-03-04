@@ -464,7 +464,6 @@ describe( 'Controllers', () => {
 	describe.only( 'MessageWallController', () => {
 		const controller = wiki.custom.wikia.MessageWallController
 		let postId: `${ number }`
-		let threadId: `${ number }`
 		let userId: number
 
 		before( async () => {
@@ -492,7 +491,6 @@ describe( 'Controllers', () => {
 				wallOwnerId: `${ userId }`
 			} )
 			postId = thread.firstPostId
-			threadId = thread.id
 
 			assert.strictEqual( thread.createdBy.name, env.FANDOM_USERNAME )
 		} )
