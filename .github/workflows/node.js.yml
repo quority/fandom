@@ -2,9 +2,15 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
-  pull_request_target:
-    branches: [ main ]
+    branches:
+      - main
+    paths:
+      - **.ts
+      - package.json
+      - yarn.lock
+  pull_request:
+    branches-ignore:
+      - 'renovate/**'
 
 jobs:
   build:
@@ -25,13 +31,11 @@ jobs:
     - run: npm i -g yarn
     - run: yarn install
     - run: yarn build
+    - run: yarn lint
 
     - env:
         FANDOM_PASSWORD: ${{ secrets.FANDOM_PASSWORD }}
         FANDOM_USERNAME: ${{ secrets.FANDOM_USERNAME }}
         FANDOM_WIKI: bitomic
 
-        WIKIPEDIA_API: https://es.wikipedia.org/w/api.php
-        WIKIPEDIA_PASSWORD: ${{ secrets.WIKIPEDIA_PASSWORD }}
-        WIKIPEDIA_USERNAME: ${{ secrets.WIKIPEDIA_USERNAME }}
       run: yarn test
