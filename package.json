@@ -1,5 +1,5 @@
 {
-  "name": "mw.js",
+  "name": "@wikiscript/fandom",
   "version": "3.1.0",
   "description": "Typed MediaWiki API client for node.js using TypeScript.",
   "main": "dist/main.js",
