@@ -305,10 +305,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wikiscript/core@link:../mwjs::locator=mw.js%40workspace%3A.":
+"@wikiscript/core@link:../mwjs::locator=%40wikiscript%2Ffandom%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "@wikiscript/core@link:../mwjs::locator=mw.js%40workspace%3A."
+  resolution: "@wikiscript/core@link:../mwjs::locator=%40wikiscript%2Ffandom%40workspace%3A."
   languageName: node
+  linkType: soft
+
+"@wikiscript/fandom@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@wikiscript/fandom@workspace:."
+  dependencies:
+    "@sapphire/shapeshift": ^3.8.1
+    "@types/form-data": 2.5.0
+    "@types/fs-extra": 9.0.13
+    "@types/mocha": 10.0.0
+    "@types/node": 18.11.9
+    "@types/tough-cookie": 4.0.2
+    "@typescript-eslint/eslint-plugin": 5.43.0
+    "@typescript-eslint/parser": 5.43.0
+    "@wikiscript/core": "link:../mwjs"
+    eslint: 8.27.0
+    husky: 8.0.2
+    lint-staged: ^13.0.3
+    mocha: 10.1.0
+    rimraf: 3.0.2
+    ts-dotenv: ^0.9.0
+    tsup: ^6.5.0
+    typescript: 4.8.4
+  languageName: unknown
   linkType: soft
 
 "abbrev@npm:1":
@@ -2224,30 +2248,6 @@ __metadata:
   checksum: aa92de608021b242401676e35cfa5aa42dd70cbdc082b916da7fb925c542173e36bce97ea3e804923fe92c0ad991434e4a38327e15a1b5b5f945d66df615ae6d
   languageName: node
   linkType: hard
-
-"mw.js@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "mw.js@workspace:."
-  dependencies:
-    "@sapphire/shapeshift": ^3.8.1
-    "@types/form-data": 2.5.0
-    "@types/fs-extra": 9.0.13
-    "@types/mocha": 10.0.0
-    "@types/node": 18.11.9
-    "@types/tough-cookie": 4.0.2
-    "@typescript-eslint/eslint-plugin": 5.43.0
-    "@typescript-eslint/parser": 5.43.0
-    "@wikiscript/core": "link:../mwjs"
-    eslint: 8.27.0
-    husky: 8.0.2
-    lint-staged: ^13.0.3
-    mocha: 10.1.0
-    rimraf: 3.0.2
-    ts-dotenv: ^0.9.0
-    tsup: ^6.5.0
-    typescript: 4.8.4
-  languageName: unknown
-  linkType: soft
 
 "mz@npm:^2.7.0":
   version: 2.7.0
