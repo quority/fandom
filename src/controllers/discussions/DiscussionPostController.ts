@@ -29,7 +29,6 @@ export class DiscussionPostController extends BaseController<WikiaEndpoint> {
 
 	public async delete( postId: `${ number }` ): Promise<DiscussionReply> {
 		const req = await this.post( {
-			controller: this.controller,
 			method: 'delete',
 			postId
 		} )
@@ -53,7 +52,6 @@ export class DiscussionPostController extends BaseController<WikiaEndpoint> {
 
 	public async undelete( postId: `${ number }` ): Promise<DiscussionReply> {
 		const req = await this.post( {
-			controller: this.controller,
 			method: 'undelete',
 			postId
 		} )
@@ -61,15 +59,19 @@ export class DiscussionPostController extends BaseController<WikiaEndpoint> {
 	}
 
 	public async update( replyId: `${ number }`, options: Omit<CreateReplyOptions, 'siteId'> ): Promise<DiscussionReply> {
-		const url = new URL( `?controller=${ this.controller }&method=update&postId=${ replyId }`, this.endpoint.url )
 		options.attachments ??= DiscussionPostController.attachmentsDefault
-		const req = await this.raw( url, {
-			body: JSON.stringify( {
+
+		const req = await this.post(
+			{
 				...options,
-				jsonModel: options.jsonModel ? JSON.stringify( options.jsonModel ) : undefined
-			} ),
-			method: 'POST'
-		} )
+				jsonModel: options.jsonModel ? JSON.stringify( options.jsonModel ) : undefined,
+				method: 'update'
+			},
+			{
+				contentType: 'application/json',
+				query: { postId: replyId }
+			}
+		)
 		return req.body.json() as Promise<DiscussionReply>
 	}
 }

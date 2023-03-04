@@ -26,37 +26,26 @@ export class DiscussionForumController extends BaseController<WikiaEndpoint> {
 	public readonly controller = 'DiscussionForum'
 
 	public async createForum( options: CreateForumOptions ): Promise<DiscussionForumBody> {
-		const url = this.getUrl( {
-			controller: this.controller,
-			method: 'createForum'
-		} )
-		const req = await this.raw( url, {
-			body: JSON.stringify( {
-				name: options.name,
-				parentId: '1',
-				siteId: `${ options.siteId }`
-			} ),
-			headers: {
-				'content-type': 'application/json'
-			},
-			method: 'POST'
-		} )
+		const req = await this.post( {
+			method: 'createForum',
+			name: options.name,
+			parentId: '1',
+			siteId: `${ options.siteId }`
+		}, { contentType: 'application/json' } )
 		return req.body.json() as Promise<DiscussionForumBody>
 	}
 
 	public async deleteForum( { forumId, moveChildrenTo }: DeleteForumOptions ): Promise<boolean> {
-		const url = this.getUrl( {
-			controller: this.controller,
-			forumId,
-			method: 'deleteForum'
-		} )
-		const req = await this.raw( url, {
-			body: JSON.stringify( { moveChildrenTo } ),
-			headers: {
-				'content-type': 'application/json'
+		const req = await this.post(
+			{
+				method: 'deleteForum',
+				moveChildrenTo
 			},
-			method: 'POST'
-		} )
+			{
+				contentType: 'application/json',
+				query: { forumId }
+			}
+		)
 		return req.statusCode === 204
 	}
 
@@ -76,49 +65,38 @@ export class DiscussionForumController extends BaseController<WikiaEndpoint> {
 	}
 
 	public async moveThreadsIntoForum( { forumId, threadIds }: MoveThreadsOptions ): Promise<boolean> {
-		const url = this.getUrl( {
-			controller: this.controller,
-			forumId,
-			method: 'moveThreadsIntoForum'
-		} )
-		const req = await this.raw( url, {
-			body: JSON.stringify( { threadIds } ),
-			headers: {
-				'content-type': 'application/json'
+		const req = await this.post(
+			{
+				method: 'moveThreadsIntoForum',
+				threadIds
 			},
-			method: 'POST'
-		} )
+			{
+				contentType: 'application/json',
+				query: { forumId }
+			}
+		)
 		return req.statusCode === 204
 	}
 
 	public async updateForum( { forumId, name }: UpdateForumOptions ): Promise<DiscussionForumBody> {
-		const url = this.getUrl( {
-			controller: this.controller,
-			forumId,
-			method: 'updateForum'
-		} )
-		const req = await this.raw( url, {
-			body: JSON.stringify( { name } ),
-			headers: {
-				'content-type': 'application/json'
+		const req = await this.post(
+			{
+				method: 'updateForum',
+				name
 			},
-			method: 'POST'
-		} )
+			{
+				contentType: 'application/json',
+				query: { forumId }
+			}
+		)
 		return req.body.json() as Promise<DiscussionForumBody>
 	}
 
 	public async updateForumDisplayOrder( forumIds: string[] ): Promise<{ forumIds: Array<`${ number }`> }> {
-		const url = this.getUrl( {
-			controller: this.controller,
+		const req = await this.post( {
+			forumIds,
 			method: 'updateForumDisplayOrder'
-		} )
-		const req = await this.raw( url, {
-			body: JSON.stringify( { forumIds } ),
-			headers: {
-				'content-type': 'application/json'
-			},
-			method: 'POST'
-		} )
+		}, { contentType: 'application/json' } )
 		return req.body.json() as Promise<{ forumIds: Array<`${ number }`> }>
 	}
 }

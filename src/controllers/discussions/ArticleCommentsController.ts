@@ -28,7 +28,6 @@ export class ArticleCommentsController extends BaseController<WikiaEndpoint> {
 
 	public async deletePost( postId: string ): Promise<boolean> {
 		const req = await this.post( {
-			controller: this.controller,
 			method: 'deletePost',
 			postId,
 			token: await this.endpoint.wiki.platform.getCSRFToken()
@@ -41,7 +40,6 @@ export class ArticleCommentsController extends BaseController<WikiaEndpoint> {
 
 		const req = await this.post( {
 			attachments: JSON.stringify( options.attachments ),
-			controller: this.controller,
 			jsonModel: JSON.stringify( options.jsonModel ),
 			method: 'editComment',
 			namespace: `${ options.namespace }`,
@@ -98,7 +96,6 @@ export class ArticleCommentsController extends BaseController<WikiaEndpoint> {
 		options.attachments ??= ArticleCommentsController.attachmentsDefault
 		const req = await this.post( {
 			attachments: JSON.stringify( options.attachments ),
-			controller: this.controller,
 			jsonModel: JSON.stringify( options.jsonModel ),
 			method: 'postNewCommentReply',
 			namespace: `${ options.namespace }`,
@@ -124,7 +121,6 @@ export class ArticleCommentsController extends BaseController<WikiaEndpoint> {
 
 	public async reportPost( options: ReportCommentOptions ): Promise<boolean> {
 		const req = await this.post( {
-			controller: this.controller,
 			method: 'reportPost',
 			namespace: `${ options.namespace }`,
 			postId: options.postId,
@@ -136,7 +132,6 @@ export class ArticleCommentsController extends BaseController<WikiaEndpoint> {
 
 	public async undeletePost( postId: string ): Promise<boolean> {
 		const req = await this.post( {
-			controller: this.controller,
 			method: 'undeletePost',
 			postId,
 			token: await this.endpoint.wiki.platform.getCSRFToken()

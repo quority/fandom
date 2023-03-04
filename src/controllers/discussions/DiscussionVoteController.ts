@@ -5,22 +5,18 @@ export class DiscussionVoteController extends BaseController<WikiaEndpoint> {
 	public readonly controller = 'DiscussionVote'
 
 	public async upvote( postId: `${ number }` ): Promise<unknown> {
-		const url = this.getUrl( {
-			controller: this.controller,
-			method: 'upVotePost',
-			postId
-		} )
-		const req = await this.raw( url, { method: 'POST' } )
+		const req = await this.post(
+			{ method: 'upVotePost' },
+			{ query: { postId } }
+		)
 		return req.body.json()
 	}
 
 	public async downvote( postId: `${ number }` ): Promise<unknown> {
-		const url = this.getUrl( {
-			controller: this.controller,
-			method: 'downVotePost',
-			postId
-		} )
-		const req = await this.raw( url, { method: 'POST' } )
+		const req = await this.post(
+			{ method: 'downVotePost' },
+			{ query: { postId } }
+		)
 		return req.body.json()
 	}
 }

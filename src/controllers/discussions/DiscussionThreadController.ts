@@ -26,27 +26,26 @@ export class DiscussionThreadController extends BaseController<WikiaEndpoint> {
 	public async create( { forumId, ...options }: CreateThreadOptions ): Promise<DiscussionThreadBody> {
 		options.articleIds ??= []
 		options.attachments ??= DiscussionThreadController.attachmentsDefault
-		const url = new URL( `?controller=${ this.controller }&method=create&forumId=${ forumId }`, this.endpoint.url )
-		options.attachments ??= DiscussionThreadController.attachmentsDefault
-		const req = await this.raw( url, {
-			body: JSON.stringify( {
+
+		const req = await this.post(
+			{
 				...options,
-				jsonModel: options.jsonModel ? JSON.stringify( options.jsonModel ) : undefined
-			} ),
-			method: 'POST'
-		} )
+				jsonModel: options.jsonModel ? JSON.stringify( options.jsonModel ) : undefined,
+				method: 'create'
+			},
+			{
+				contentType: 'application/json',
+				query: { forumId }
+			}
+		)
 		return req.body.json() as Promise<DiscussionThreadBody>
 	}
 
 	public async delete( threadId: `${ number }` ): Promise<unknown> {
-		const url = this.getUrl( {
-			controller: this.controller,
-			method: 'delete',
-			threadId
-		} )
-		const req = await this.raw( url, {
-			method: 'POST'
-		} )
+		const req = await this.post(
+			{ method: 'delete' },
+			{ query: { threadId } }
+		)
 		return req.body.json()
 	}
 
@@ -74,53 +73,41 @@ export class DiscussionThreadController extends BaseController<WikiaEndpoint> {
 	}
 
 	public async lock( threadId: string ): Promise<boolean> {
-		const url = this.getUrl( {
-			controller: this.controller,
-			method: 'lock',
-			threadId
-		} )
-		const req = await this.raw( url, { method: 'POST' } )
+		const req = await this.post(
+			{ method: 'lock' },
+			{ query: { threadId } }
+		)
 		return req.statusCode >= 200 && req.statusCode < 300
 	}
 
 	public async undelete( threadId: `${ number }` ): Promise<unknown> {
-		const url = this.getUrl( {
-			controller: this.controller,
-			method: 'undelete',
-			threadId
-		} )
-		const req = await this.raw( url, {
-			method: 'POST'
-		} )
+		const req = await this.post(
+			{ method: 'undelete' },
+			{ query: { threadId } }
+		)
 		return req.body.json()
 	}
 
 	public async unlock( threadId: string ): Promise<boolean> {
-		const url = this.getUrl( {
-			controller: this.controller,
-			method: 'unlock',
-			threadId
-		} )
-		const req = await this.raw( url, { method: 'POST' } )
+		const req = await this.post(
+			{ method: 'unlock' },
+			{ query: { threadId } }
+		)
 		return req.statusCode >= 200 && req.statusCode < 300
 	}
 
 	public async update( { threadId, ...options }: UpdateThreadOptions ): Promise<DiscussionThreadBody> {
-		const url = this.getUrl( {
-			controller: this.controller,
-			method: 'update',
-			threadId
-		} )
-		const req = await this.raw( url, {
-			body: JSON.stringify( {
+		const req = await this.post(
+			{
 				...options,
-				jsonModel: options.jsonModel ? JSON.stringify( options.jsonModel ) : undefined
-			} ),
-			headers: {
-				'content-type': 'application/json'
+				jsonModel: options.jsonModel ? JSON.stringify( options.jsonModel ) : undefined,
+				method: 'update'
 			},
-			method: 'POST'
-		} )
+			{
+				contentType: 'application/json',
+				query: { threadId }
+			}
+		)
 		return req.body.json() as Promise<DiscussionThreadBody>
 	}
 }
