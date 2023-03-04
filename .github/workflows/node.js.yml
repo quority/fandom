@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - **.ts
+      - '**.ts'
       - package.json
       - yarn.lock
   pull_request:
