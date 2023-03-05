@@ -38,7 +38,7 @@
   "homepage": "https://github.com/quority/fandom#readme",
   "devDependencies": {
     "@types/form-data": "2.5.0",
-    "@types/fs-extra": "9.0.13",
+    "@types/fs-extra": "11.0.1",
     "@types/mocha": "10.0.0",
     "@types/node": "18.11.9",
     "@types/tough-cookie": "4.0.2",
