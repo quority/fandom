@@ -32,13 +32,17 @@ describe( 'Controllers', () => {
 		it( '#postNewCommentThread', async () => {
 			const comment = await controller.postNewCommentThread( {
 				jsonModel: {
-					content: [ {
-						content: [ {
-							text: 'This is a test.',
-							type: 'text'
-						} ],
-						type: 'paragraph'
-					} ],
+					content: [
+						{
+							content: [
+								{
+									text: 'This is a test.',
+									type: 'text'
+								}
+							],
+							type: 'paragraph'
+						}
+					],
 					type: 'doc'
 				},
 				namespace: 0,
@@ -53,13 +57,17 @@ describe( 'Controllers', () => {
 		it( '#postNewCommentReply', async () => {
 			const reply = await controller.postNewCommentReply( {
 				jsonModel: {
-					content: [ {
-						content: [ {
-							text: 'This is a reply.',
-							type: 'text'
-						} ],
-						type: 'paragraph'
-					} ],
+					content: [
+						{
+							content: [
+								{
+									text: 'This is a reply.',
+									type: 'text'
+								}
+							],
+							type: 'paragraph'
+						}
+					],
 					type: 'doc'
 				},
 				namespace: 0,
@@ -104,13 +112,17 @@ describe( 'Controllers', () => {
 		it( '#editComment', async () => {
 			const editComment = await controller.editComment( {
 				jsonModel: {
-					content: [ {
-						content: [ {
-							text: 'Edited comment.',
-							type: 'text'
-						} ],
-						type: 'paragraph'
-					} ],
+					content: [
+						{
+							content: [
+								{
+									text: 'Edited comment.',
+									type: 'text'
+								}
+							],
+							type: 'paragraph'
+						}
+					],
 					type: 'doc'
 				},
 				namespace: 0,
@@ -119,13 +131,17 @@ describe( 'Controllers', () => {
 			} )
 			const editReply = await controller.editComment( {
 				jsonModel: {
-					content: [ {
-						content: [ {
-							text: 'Edited reply.',
-							type: 'text'
-						} ],
-						type: 'paragraph'
-					} ],
+					content: [
+						{
+							content: [
+								{
+									text: 'Edited reply.',
+									type: 'text'
+								}
+							],
+							type: 'paragraph'
+						}
+					],
 					type: 'doc'
 				},
 				namespace: 0,
@@ -182,7 +198,9 @@ describe( 'Controllers', () => {
 		}> = []
 
 		it( '#createForum', async () => {
-			const names = [ 'Test forum', 'Placeholder' ]
+			const names = [
+				'Test forum', 'Placeholder'
+			]
 			for ( const name of names ) {
 				const forum = await controller.createForum( {
 					name,
@@ -210,7 +228,9 @@ describe( 'Controllers', () => {
 			const ids = createdForums.map( i => i.id ).reverse()
 			const forums = await controller.getForums()
 			const otherForums = forums._embedded[ 'doc:forum' ].map( i => i.id ).filter( i => !ids.includes( i ) )
-			const forumIds = [ ...otherForums, ...ids ]
+			const forumIds = [
+				...otherForums, ...ids
+			]
 			const result = await controller.updateForumDisplayOrder( forumIds )
 
 			for ( let i = 0; i < result.forumIds.length; i++ ) {
@@ -305,14 +325,14 @@ describe( 'Controllers', () => {
 
 		it( '#getReportedPosts', async () => {
 			const reports = await controller.getReportedPosts()
-			
-			const reply = reports._embedded['doc:posts'].find( i => i.id === replyId )
+
+			const reply = reports._embedded[ 'doc:posts' ].find( i => i.id === replyId )
 			assert.strictEqual( reply?.createdBy.name, env.FANDOM_USERNAME )
 		} )
 
 		it( '#getPostListReports', async () => {
 			const reports = await controller.getPostListReports( replyId )
-			const ownReport = reports.posts[0]?.userInfo.find( i => i.name === env.FANDOM_USERNAME )
+			const ownReport = reports.posts[ 0 ]?.userInfo.find( i => i.name === env.FANDOM_USERNAME )
 			assert.strictEqual( ownReport?.name, env.FANDOM_USERNAME )
 		} )
 
@@ -371,7 +391,7 @@ describe( 'Controllers', () => {
 
 		it( '#create', async () => {
 			const reply = await controller.create( {
-				body: `This is a test reply.`,
+				body: 'This is a test reply.',
 				siteId: `${ wikiId }`,
 				threadId
 			} )
@@ -417,7 +437,7 @@ describe( 'Controllers', () => {
 
 		it( '#create', async () => {
 			const thread = await controller.create( {
-				body: `Post used to test threads.`,
+				body: 'Post used to test threads.',
 				forumId: `${ wikiId }`,
 				siteId: `${ wikiId }`,
 				title: 'Thread test'
@@ -429,10 +449,10 @@ describe( 'Controllers', () => {
 
 		it( '#update', async () => {
 			const thread = await controller.update( {
-				body: `Edited thread`,
+				body: 'Edited thread',
 				forumId: `${ wikiId }`,
-				title: `Edited thread test`,
-				threadId: threadId
+				threadId: threadId,
+				title: 'Edited thread test'
 			} )
 
 			assert.strictEqual( thread.createdBy.name, env.FANDOM_USERNAME )
@@ -478,13 +498,17 @@ describe( 'Controllers', () => {
 		it( '#createThread', async () => {
 			const thread = await controller.createThread( {
 				jsonModel: {
-					content: [ {
-						content: [ {
-							text: 'This is a message wall test.',
-							type: 'text'
-						} ],
-						type: 'paragraoh'
-					} ],
+					content: [
+						{
+							content: [
+								{
+									text: 'This is a message wall test.',
+									type: 'text'
+								}
+							],
+							type: 'paragraoh'
+						}
+					],
 					type: 'doc'
 				},
 				title: 'Message Wall test',
