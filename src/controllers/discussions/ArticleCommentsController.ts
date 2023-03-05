@@ -1,10 +1,11 @@
 import { BaseController } from '../BaseController'
 import type { DiscussionsAPI } from './types'
+import type { DocNode } from '@atlaskit/adf-schema'
 import type { WikiaEndpoint } from '../../endpoints'
 
 export interface CommentOptions {
 	attachments?: Record<string, unknown>
-	jsonModel: Record<string, unknown>
+	jsonModel: DocNode | Record<string, unknown>
 	namespace: number
 	title: string
 }

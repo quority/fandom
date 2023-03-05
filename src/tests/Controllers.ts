@@ -4,6 +4,7 @@ import { env } from './lib'
 import { Wiki } from '../main'
 
 describe( 'Controllers', () => {
+
 	const wiki = new Wiki( {
 		api: env.FANDOM_WIKI
 	} )

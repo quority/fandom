@@ -1,10 +1,11 @@
 import { BaseController } from '../BaseController'
 import type { DiscussionsAPI } from './types'
+import type { DocNode } from '@atlaskit/adf-schema'
 import type { WikiaEndpoint } from '../../endpoints'
 
 export interface CreateWallReplyOptions {
 	attachments?: Record<string, unknown>
-	jsonModel: Record<string, unknown>
+	jsonModel: DocNode | Record<string, unknown>
 	threadId: `${ number }`
 	wallOwnerId: `${ number }`
 }
@@ -20,7 +21,7 @@ export interface DeleteWallReplyOptions {
 
 export interface EditWallPostOptions {
 	attachments?: Record<string, unknown>
-	jsonModel: Record<string, unknown>
+	jsonModel: DocNode | Record<string, unknown>
 	postId: `${ number }`
 	threadId: `${ number }`
 	title?: string
