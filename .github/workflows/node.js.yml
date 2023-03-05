@@ -31,6 +31,7 @@ jobs:
     - run: npm i -g yarn
     - run: yarn install
     - run: yarn build
+    - run: yarn lint
 
     - env:
         FANDOM_PASSWORD: ${{ secrets.FANDOM_PASSWORD }}
