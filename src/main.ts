@@ -1,3 +1,4 @@
+export * from './controllers'
 export * from './endpoints'
 export * from './errors'
 export * from './mediawiki'
