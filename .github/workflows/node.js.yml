@@ -10,7 +10,7 @@ on:
       - yarn.lock
   pull_request:
     branches-ignore:
-      - 'renovate/**'
+      - 'renovate/*'
 
 jobs:
   build:
