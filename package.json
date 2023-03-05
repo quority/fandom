@@ -1,5 +1,5 @@
 {
-  "name": "@wikiscript/fandom",
+  "name": "@quority/fandom",
   "version": "4.0.0-rc.0",
   "description": "Typed MediaWiki API client for node.js using TypeScript.",
   "main": "dist/main.js",
@@ -55,8 +55,8 @@
   },
   "packageManager": "yarn@3.2.4",
   "dependencies": {
-    "@sapphire/shapeshift": "^3.8.1",
-    "@wikiscript/core": "^4.0.0-rc.0"
+    "@quority/core": "^4.0.0-rc.0",
+    "@sapphire/shapeshift": "^3.8.1"
   },
   "publishConfig": {
     "access": "public"

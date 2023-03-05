@@ -108,6 +108,42 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@quority/core@npm:^4.0.0-rc.0":
+  version: 4.0.0-rc.0
+  resolution: "@quority/core@npm:4.0.0-rc.0"
+  dependencies:
+    "@sapphire/shapeshift": ^3.8.1
+    fs-extra: ^10.1.0
+    tough-cookie: ^4.1.2
+    undici: ^5.12.0
+  checksum: f67cfb8330a08d61b685880f5acfe37f8c56061eb15b5796a1826c609bd0b63d23d45ce040d8b94dd8d48e43b10ff08084f680cf2967d13e1228ade8d82a79b6
+  languageName: node
+  linkType: hard
+
+"@quority/fandom@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@quority/fandom@workspace:."
+  dependencies:
+    "@quority/core": ^4.0.0-rc.0
+    "@sapphire/shapeshift": ^3.8.1
+    "@types/form-data": 2.5.0
+    "@types/fs-extra": 9.0.13
+    "@types/mocha": 10.0.0
+    "@types/node": 18.11.9
+    "@types/tough-cookie": 4.0.2
+    "@typescript-eslint/eslint-plugin": 5.43.0
+    "@typescript-eslint/parser": 5.43.0
+    eslint: 8.27.0
+    husky: 8.0.2
+    lint-staged: ^13.0.3
+    mocha: 10.1.0
+    rimraf: 3.0.2
+    ts-dotenv: ^0.9.0
+    tsup: ^6.5.0
+    typescript: 4.8.4
+  languageName: unknown
+  linkType: soft
+
 "@sapphire/shapeshift@npm:^3.8.1":
   version: 3.8.1
   resolution: "@sapphire/shapeshift@npm:3.8.1"
@@ -304,42 +340,6 @@ __metadata:
   checksum: 4820679e50096dcdaadc7c95d32e5dca3ba8510acf1a865e283822bae3940a2faec02ad8abe793f8a25f75b600f1e7215e1fd3b3ba73779eff737fa90d092550
   languageName: node
   linkType: hard
-
-"@wikiscript/core@npm:^4.0.0-rc.0":
-  version: 4.0.0-rc.0
-  resolution: "@wikiscript/core@npm:4.0.0-rc.0"
-  dependencies:
-    "@sapphire/shapeshift": ^3.8.1
-    fs-extra: ^10.1.0
-    tough-cookie: ^4.1.2
-    undici: ^5.12.0
-  checksum: 6531698a37ba69ae59b98aa7155ae9b17531aaa11ee1ce7a0ed098b83c42daeedda516d025044891eb819f5e18d89518dd64ba1d3ca81fed5bca37d3e8685b87
-  languageName: node
-  linkType: hard
-
-"@wikiscript/fandom@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@wikiscript/fandom@workspace:."
-  dependencies:
-    "@sapphire/shapeshift": ^3.8.1
-    "@types/form-data": 2.5.0
-    "@types/fs-extra": 9.0.13
-    "@types/mocha": 10.0.0
-    "@types/node": 18.11.9
-    "@types/tough-cookie": 4.0.2
-    "@typescript-eslint/eslint-plugin": 5.43.0
-    "@typescript-eslint/parser": 5.43.0
-    "@wikiscript/core": ^4.0.0-rc.0
-    eslint: 8.27.0
-    husky: 8.0.2
-    lint-staged: ^13.0.3
-    mocha: 10.1.0
-    rimraf: 3.0.2
-    ts-dotenv: ^0.9.0
-    tsup: ^6.5.0
-    typescript: 4.8.4
-  languageName: unknown
-  linkType: soft
 
 "abbrev@npm:1":
   version: 1.1.1
