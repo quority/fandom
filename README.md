@@ -46,7 +46,7 @@ const { Wiki } = require( '@quority/fandom' )
 
 ## Wiki instance
 ```ts
-import { Wiki } from '@quority/core'
+import { Wiki } from '@quority/fandom'
 
 const community = new Wiki( {
 	api: 'community'
