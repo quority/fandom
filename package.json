@@ -44,7 +44,6 @@
     "@types/tough-cookie": "4.0.2",
     "@typescript-eslint/eslint-plugin": "5.43.0",
     "@typescript-eslint/parser": "5.43.0",
-    "@wikiscript/core": "link:../mwjs",
     "eslint": "8.27.0",
     "husky": "8.0.2",
     "lint-staged": "^13.0.3",
@@ -56,6 +55,7 @@
   },
   "packageManager": "yarn@3.2.4",
   "dependencies": {
-    "@sapphire/shapeshift": "^3.8.1"
+    "@sapphire/shapeshift": "^3.8.1",
+    "@wikiscript/core": "^4.0.0-rc.0"
   }
 }
