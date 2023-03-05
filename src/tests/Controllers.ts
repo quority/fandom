@@ -133,8 +133,8 @@ describe( 'Controllers', () => {
 				title
 			} )
 
-			assert.strictEqual( editComment.lastEditedBy.name, env.FANDOM_USERNAME )
-			assert.strictEqual( editReply.lastEditedBy.name, env.FANDOM_USERNAME )
+			assert.strictEqual( editComment.lastEditedBy?.name, env.FANDOM_USERNAME )
+			assert.strictEqual( editReply.lastEditedBy?.name, env.FANDOM_USERNAME )
 		} )
 
 		it( '#reportPost', async () => {

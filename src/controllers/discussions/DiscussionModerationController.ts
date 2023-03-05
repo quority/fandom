@@ -1,23 +1,23 @@
-import type { DiscussionPostReports, DiscussionReportedPosts } from './types'
 import { BaseController } from '../BaseController'
+import type { DiscussionsAPI } from './types'
 import type { WikiaEndpoint } from '../../endpoints'
 
 export class DiscussionModerationController extends BaseController<WikiaEndpoint> {
 	public readonly controller = 'DiscussionModeration'
 
-	public async getPostListReports( postId: string ): Promise<DiscussionPostReports> {
+	public async getPostListReports( postId: string ): Promise<{ posts: [] | [ DiscussionsAPI.Report ] }> {
 		const req = await this.get( {
 			method: 'getPostListReports',
 			postId
 		} )
-		return req.body.json() as Promise<DiscussionPostReports>
+		return req.body.json() as Promise<{ posts: [ DiscussionsAPI.Report ] }>
 	}
 
-	public async getReportedPosts(): Promise<DiscussionReportedPosts> {
+	public async getReportedPosts(): Promise<DiscussionsAPI.DiscussionPostListContainer> {
 		const req = await this.get( {
 			method: 'getReportedPosts'
 		} )
-		return req.body.json() as Promise<DiscussionReportedPosts>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionPostListContainer>
 	}
 
 	public async reportPost( postId: string ): Promise<boolean> {

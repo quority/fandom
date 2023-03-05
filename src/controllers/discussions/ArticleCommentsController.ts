@@ -1,5 +1,5 @@
-import type { ArticleCommentsBody, ArticleCommentsEdited, ArticleCommentsReply, ArticleCommentsResponse, ArticleCommentsThread } from './types'
 import { BaseController } from '../BaseController'
+import type { DiscussionsAPI } from './types'
 import type { WikiaEndpoint } from '../../endpoints'
 
 export interface CommentOptions {
@@ -35,7 +35,7 @@ export class ArticleCommentsController extends BaseController<WikiaEndpoint> {
 		return req.statusCode >= 200 && req.statusCode < 300
 	}
 
-	public async editComment( options: EditCommentOptions ): Promise<ArticleCommentsEdited> {
+	public async editComment( options: EditCommentOptions ): Promise<DiscussionsAPI.Post> {
 		options.attachments ??= ArticleCommentsController.attachmentsDefault
 
 		const req = await this.post( {
@@ -47,7 +47,7 @@ export class ArticleCommentsController extends BaseController<WikiaEndpoint> {
 			title: options.title,
 			token: await this.endpoint.wiki.platform.getCSRFToken()
 		} )
-		return req.body.json() as Promise<ArticleCommentsEdited>
+		return req.body.json() as Promise<DiscussionsAPI.Post>
 	}
 
 	public async getArticleTitle( stablePageId: number | string ): Promise<string> {
@@ -71,17 +71,17 @@ export class ArticleCommentsController extends BaseController<WikiaEndpoint> {
 		return req.body.json() as Promise<number>
 	}
 
-	public async getComments( title: string, namespace = 0, hideDeleted = true ): Promise<ArticleCommentsResponse> {
+	public async getComments( title: string, namespace = 0, hideDeleted = true ): Promise<DiscussionsAPI.ArticleComments> {
 		const req = await this.get( {
 			hideDeleted: `${ hideDeleted }`,
 			method: 'getComments',
 			namespace: `${ namespace }`,
 			title
 		} )
-		return req.body.json() as Promise<ArticleCommentsResponse>
+		return req.body.json() as Promise<DiscussionsAPI.ArticleComments>
 	}
 
-	public async getThread( threadId: string, title: string, namespace = 0, hideDeleted = true ): Promise<ArticleCommentsThread> {
+	public async getThread( threadId: string, title: string, namespace = 0, hideDeleted = true ): Promise<DiscussionsAPI.ArticleCommentThread> {
 		const req = await this.get( {
 			hideDeleted: `${ hideDeleted }`,
 			method: 'getThread',
@@ -89,10 +89,10 @@ export class ArticleCommentsController extends BaseController<WikiaEndpoint> {
 			threadId,
 			title
 		} )
-		return req.body.json() as Promise<ArticleCommentsThread>
+		return req.body.json() as Promise<DiscussionsAPI.ArticleCommentThread>
 	}
 
-	public async postNewCommentReply( options: CommentReplyOptions ): Promise<ArticleCommentsReply> {
+	public async postNewCommentReply( options: CommentReplyOptions ): Promise<DiscussionsAPI.ArticleCommentReply> {
 		options.attachments ??= ArticleCommentsController.attachmentsDefault
 		const req = await this.post( {
 			attachments: JSON.stringify( options.attachments ),
@@ -103,10 +103,10 @@ export class ArticleCommentsController extends BaseController<WikiaEndpoint> {
 			title: options.title,
 			token: await this.endpoint.wiki.platform.getCSRFToken()
 		} )
-		return req.body.json() as Promise<ArticleCommentsReply>
+		return req.body.json() as Promise<DiscussionsAPI.ArticleCommentReply>
 	}
 
-	public async postNewCommentThread( options: CommentOptions ): Promise<ArticleCommentsBody> {
+	public async postNewCommentThread( options: CommentOptions ): Promise<DiscussionsAPI.ArticleComment> {
 		options.attachments ??= ArticleCommentsController.attachmentsDefault
 		const req = await this.post( {
 			attachments: JSON.stringify( options.attachments ),
@@ -116,7 +116,7 @@ export class ArticleCommentsController extends BaseController<WikiaEndpoint> {
 			title: options.title,
 			token: await this.endpoint.wiki.platform.getCSRFToken()
 		} )
-		return req.body.json() as Promise<ArticleCommentsBody>
+		return req.body.json() as Promise<DiscussionsAPI.ArticleComment>
 	}
 
 	public async reportPost( options: ReportCommentOptions ): Promise<boolean> {

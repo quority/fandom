@@ -1,5 +1,5 @@
 import { BaseController } from '../BaseController'
-import type { DiscussionThreadBody } from './types'
+import type { DiscussionsAPI } from './types'
 import type { WikiaEndpoint } from '../../endpoints'
 
 export interface CreateWallReplyOptions {
@@ -43,7 +43,7 @@ export class MessageWallController extends BaseController<WikiaEndpoint> {
 		return req.body.json()
 	}
 
-	public async createThread( options: CreateWallThreadOptions ): Promise<DiscussionThreadBody> {
+	public async createThread( options: CreateWallThreadOptions ): Promise<DiscussionsAPI.DiscussionThread> {
 		options.attachments ??= MessageWallController.attachmentsDefault
 		const req = await this.post( {
 			...options,
@@ -53,7 +53,7 @@ export class MessageWallController extends BaseController<WikiaEndpoint> {
 			method: 'createThread',
 			token: await this.endpoint.wiki.platform.getCSRFToken()
 		} )
-		return req.body.json() as Promise<DiscussionThreadBody>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionThread>
 	}
 
 	public async deleteReply( options: DeleteWallReplyOptions ): Promise<boolean> {

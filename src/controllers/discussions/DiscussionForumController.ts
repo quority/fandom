@@ -1,5 +1,5 @@
-import type { DiscussionForumBody, DiscussionForums } from './types'
 import { BaseController } from '../BaseController'
+import type { DiscussionsAPI } from './types'
 import type { WikiaEndpoint } from '../../endpoints'
 
 export interface CreateForumOptions {
@@ -25,14 +25,14 @@ export interface UpdateForumOptions {
 export class DiscussionForumController extends BaseController<WikiaEndpoint> {
 	public readonly controller = 'DiscussionForum'
 
-	public async createForum( options: CreateForumOptions ): Promise<DiscussionForumBody> {
+	public async createForum( options: CreateForumOptions ): Promise<DiscussionsAPI.DiscussionForum> {
 		const req = await this.post( {
 			method: 'createForum',
 			name: options.name,
 			parentId: '1',
 			siteId: `${ options.siteId }`
 		}, { contentType: 'application/json' } )
-		return req.body.json() as Promise<DiscussionForumBody>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionForum>
 	}
 
 	public async deleteForum( { forumId, moveChildrenTo }: DeleteForumOptions ): Promise<boolean> {
@@ -49,19 +49,19 @@ export class DiscussionForumController extends BaseController<WikiaEndpoint> {
 		return req.statusCode === 204
 	}
 
-	public async getForum( forumId: `${ number }` ): Promise<DiscussionForumBody> {
+	public async getForum( forumId: `${ number }` ): Promise<DiscussionsAPI.DiscussionForum> {
 		const req = await this.get( {
 			forumId,
 			method: 'getForum'
 		} )
-		return req.body.json() as Promise<DiscussionForumBody>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionForum>
 	}
 
-	public async getForums(): Promise<DiscussionForums> {
+	public async getForums(): Promise<DiscussionsAPI.DiscussionRootForum> {
 		const req = await this.get( {
 			method: 'getForums'
 		} )
-		return req.body.json() as Promise<DiscussionForums>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionRootForum>
 	}
 
 	public async moveThreadsIntoForum( { forumId, threadIds }: MoveThreadsOptions ): Promise<boolean> {
@@ -78,7 +78,7 @@ export class DiscussionForumController extends BaseController<WikiaEndpoint> {
 		return req.statusCode === 204
 	}
 
-	public async updateForum( { forumId, name }: UpdateForumOptions ): Promise<DiscussionForumBody> {
+	public async updateForum( { forumId, name }: UpdateForumOptions ): Promise<DiscussionsAPI.DiscussionForum> {
 		const req = await this.post(
 			{
 				method: 'updateForum',
@@ -89,7 +89,7 @@ export class DiscussionForumController extends BaseController<WikiaEndpoint> {
 				query: { forumId }
 			}
 		)
-		return req.body.json() as Promise<DiscussionForumBody>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionForum>
 	}
 
 	public async updateForumDisplayOrder( forumIds: string[] ): Promise<{ forumIds: Array<`${ number }`> }> {

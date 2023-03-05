@@ -1,5 +1,5 @@
-import type { DiscussionPostList, DiscussionReply } from './types'
 import { BaseController } from '../BaseController'
+import type { DiscussionsAPI } from './types'
 import type { WikiaEndpoint } from '../../endpoints'
 
 export type CreateReplyOptions = {
@@ -17,48 +17,48 @@ export type CreateReplyOptions = {
 export class DiscussionPostController extends BaseController<WikiaEndpoint> {
 	public readonly controller = 'DiscussionPost'
 
-	public async create( options: CreateReplyOptions ): Promise<DiscussionReply> {
+	public async create( options: CreateReplyOptions ): Promise<DiscussionsAPI.DiscussionPost> {
 		options.attachments ??= DiscussionPostController.attachmentsDefault
 		const req = await this.post( {
 			...options,
 			jsonModel: options.jsonModel ? JSON.stringify( options.jsonModel ) : undefined,
 			method: 'create'
 		}, { contentType: 'application/json' } )
-		return req.body.json() as Promise<DiscussionReply>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionPost>
 	}
 
-	public async delete( postId: `${ number }` ): Promise<DiscussionReply> {
+	public async delete( postId: `${ number }` ): Promise<DiscussionsAPI.DiscussionPost> {
 		const req = await this.post( {
 			method: 'delete',
 			postId
 		} )
-		return req.body.json() as Promise<DiscussionReply>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionPost>
 	}
 
-	public async getPost( postId: `${ number }` ): Promise<DiscussionReply> {
+	public async getPost( postId: `${ number }` ): Promise<DiscussionsAPI.DiscussionPost> {
 		const req = await this.get( {
 			method: 'getPost',
 			postId
 		} )
-		return req.body.json() as Promise<DiscussionReply>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionPost>
 	}
 
-	public async getPosts(): Promise<DiscussionPostList> {
+	public async getPosts(): Promise<DiscussionsAPI.DiscussionPostListContainer> {
 		const req = await this.get( {
 			method: 'getPosts'
 		} )
-		return req.body.json() as Promise<DiscussionPostList>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionPostListContainer>
 	}
 
-	public async undelete( postId: `${ number }` ): Promise<DiscussionReply> {
+	public async undelete( postId: `${ number }` ): Promise<DiscussionsAPI.DiscussionPost> {
 		const req = await this.post( {
 			method: 'undelete',
 			postId
 		} )
-		return req.body.json() as Promise<DiscussionReply>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionPost>
 	}
 
-	public async update( replyId: `${ number }`, options: Omit<CreateReplyOptions, 'siteId'> ): Promise<DiscussionReply> {
+	public async update( replyId: `${ number }`, options: Omit<CreateReplyOptions, 'siteId'> ): Promise<DiscussionsAPI.DiscussionPost> {
 		options.attachments ??= DiscussionPostController.attachmentsDefault
 
 		const req = await this.post(
@@ -72,6 +72,6 @@ export class DiscussionPostController extends BaseController<WikiaEndpoint> {
 				query: { postId: replyId }
 			}
 		)
-		return req.body.json() as Promise<DiscussionReply>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionPost>
 	}
 }

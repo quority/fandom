@@ -1,5 +1,5 @@
-import type { DiscussionThreadBody, DiscussionThreadList } from './types'
 import { BaseController } from '../BaseController'
+import type { DiscussionsAPI } from './types'
 import type { WikiaEndpoint } from '../../endpoints'
 
 export type CreateThreadOptions = {
@@ -23,7 +23,7 @@ export type UpdateThreadOptions = Omit<CreateThreadOptions, 'siteId'> & {
 export class DiscussionThreadController extends BaseController<WikiaEndpoint> {
 	public readonly controller = 'DiscussionThread'
 
-	public async create( { forumId, ...options }: CreateThreadOptions ): Promise<DiscussionThreadBody> {
+	public async create( { forumId, ...options }: CreateThreadOptions ): Promise<DiscussionsAPI.DiscussionThread> {
 		options.articleIds ??= []
 		options.attachments ??= DiscussionThreadController.attachmentsDefault
 
@@ -38,7 +38,7 @@ export class DiscussionThreadController extends BaseController<WikiaEndpoint> {
 				query: { forumId }
 			}
 		)
-		return req.body.json() as Promise<DiscussionThreadBody>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionThread>
 	}
 
 	public async delete( threadId: `${ number }` ): Promise<unknown> {
@@ -49,27 +49,27 @@ export class DiscussionThreadController extends BaseController<WikiaEndpoint> {
 		return req.body.json()
 	}
 
-	public async getThread( threadId: `${ number }` ): Promise<DiscussionThreadBody> {
+	public async getThread( threadId: `${ number }` ): Promise<DiscussionsAPI.DiscussionThread> {
 		const req = await this.get( {
 			method: 'getThread',
 			threadId
 		} )
-		return req.body.json() as Promise<DiscussionThreadBody>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionThread>
 	}
 
-	public async getThreadForAnons( threadId: `${ number }` ): Promise<DiscussionThreadBody> {
+	public async getThreadForAnons( threadId: `${ number }` ): Promise<DiscussionsAPI.DiscussionThread> {
 		const req = await this.get( {
 			method: 'getThreadForAnons',
 			threadId
 		} )
-		return req.body.json() as Promise<DiscussionThreadBody>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionThread>
 	}
 
-	public async getThreads(): Promise<DiscussionThreadList> {
+	public async getThreads(): Promise<DiscussionsAPI.DiscussionThreadContainer> {
 		const req = await this.get( {
 			method: 'getThreads'
 		} )
-		return req.body.json() as Promise<DiscussionThreadList>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionThreadContainer>
 	}
 
 	public async lock( threadId: string ): Promise<boolean> {
@@ -96,7 +96,7 @@ export class DiscussionThreadController extends BaseController<WikiaEndpoint> {
 		return req.statusCode >= 200 && req.statusCode < 300
 	}
 
-	public async update( { threadId, ...options }: UpdateThreadOptions ): Promise<DiscussionThreadBody> {
+	public async update( { threadId, ...options }: UpdateThreadOptions ): Promise<DiscussionsAPI.DiscussionThread> {
 		const req = await this.post(
 			{
 				...options,
@@ -108,6 +108,6 @@ export class DiscussionThreadController extends BaseController<WikiaEndpoint> {
 				query: { threadId }
 			}
 		)
-		return req.body.json() as Promise<DiscussionThreadBody>
+		return req.body.json() as Promise<DiscussionsAPI.DiscussionThread>
 	}
 }

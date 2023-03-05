@@ -1,426 +1,324 @@
-export interface CreationDate {
-	epochSecond: number
-	nano: number
-}
+// eslint-disable-next-line @typescript-eslint/no-namespace
+export namespace DiscussionsAPI {
+	export enum ContainerTypes {
+		ArticleComment = 'ARTICLE_COMMENT',
+		Forum = 'FORUM',
+		Post = 'POST',
+		Reply = 'REPLY'
+	}
 
-export interface ArticleCommentsBody {
-	containerId: `${ number }`
-	creationDate: CreationDate
-	firstPost: {
-		attachments: {
-			atMentions: unknown[]
-			contentImages: unknown[]
-			openGraphs: unknown[]
-			polls: unknown[]
-			quizzes: unknown[]
-		}
-		createdBy: {
-			avatarUrl: string
-			badgePermission: string
-			id: `${ number }`
-			name: string
-		}
-		creationDate: {
-			epochSecond: number
-			nano: number
-		}
+	export type PostId = `${ number }`
+
+	export interface Date {
+		epochSecond: number
+		nano: number
+	}
+
+	export interface ContentImage {
+		height: number
+		id: number
+		mediaType: string
+		position: number
+		url: string
+		width: number
+	}
+
+	export interface Attachments {
+		atMentions: unknown[]
+		contentImages: ContentImage[]
+		openGraphs: unknown[]
+		polls: unknown[]
+		quizzes: unknown[]
+	}
+
+	export interface User {
+		avatarUrl: string
+		badgePermission: string
 		id: `${ number }`
-		jsonModel: string
+		name: string
+	}
+
+	export interface UserPostData {
+		hasUpvoted: boolean
+		isReported: boolean
+		permissions: {
+			canDelete: boolean
+			canEdit: boolean
+		}
+		postId: PostId
+	}
+
+	export interface Report {
+		containerType: ContainerTypes
+		count: number
+		postId: PostId
+		userInfo: User[]
+	}
+
+	export interface Resource {
+		creationDate: Date
+		id: PostId
+	}
+
+	export interface Post extends Resource {
+		attachments: Attachments
+		createdBy: User
+		jsonModel: string | null
+		lastEditedBy?: User
 		upvoteCount: number
-		userData: {
-			hasUpvoted: boolean
-			isReported: boolean
-			permissions: {
-				canEdit: boolean
-				canDelete: boolean
+		userData: UserPostData
+	}
+
+	export interface ArticleComment extends Resource {
+		containerId: PostId
+		firstPost: Post
+		followed: boolean
+		postId: PostId
+		posts: Post[]
+		readOnlyMode: boolean
+	}
+
+	export interface ArticleCommentThread {
+		reportedData: {
+			reportedData: {
+				posts: Report[]
 			}
-			postId: number
 		}
+		thread: ArticleComment
 	}
-	followed: boolean
-	id: `${ number }`
-	postId: `${ number }`
-	posts: Array<ArticleCommentsBody[ 'firstPost' ]>
-	readOnlyMode: boolean
-}
 
-export interface ArticleCommentsReply {
-	followed: boolean
-	reply: ArticleCommentsBody[ 'firstPost' ]
-	threadId: `${ number }`
-}
+	export interface ArticleCommentReply {
+		followed: boolean
+		reply: Post
+		threadId: PostId
+	}
 
-export interface ArticleCommentsThread {
-	thread: ArticleCommentsBody
-	reportedData: {
-		posts: unknown[]
-	}
-}
-
-export interface ArticleCommentsResponse {
-	links: unknown[]
-	readOnlyMode: boolean
-	reportedData: {
-		posts: unknown[]
-	}
-	threads: ArticleCommentsBody[]
-	totalCount: number
-}
-
-export type ArticleCommentsEdited = ArticleCommentsBody[ 'firstPost' ] & {
-	lastEditedBy: {
-		avatarUrl: string
-		badgePermission: string
-		id: `${ number }`
-		name: string
-	}
-}
-
-export interface DiscussionPost {
-	_embedded: {
-		attachments: Array<{
-			atMentions: unknown[]
-			contentImages: unknown[]
-			openGraphs: unknown[]
-			polls: unknown[]
-			quizzes: unknown[]
-		}>
-		contentImages: unknown[]
-		userData: Array<{
-			hasReported: boolean
-			hasUpvoted: boolean
-			permissions: string[]
-		}>
-	}
-	createdBy: {
-		avatarUrl: string
-		badgePermission: string
-		id: `${ number }`
-		name: string
-	}
-	creationDate: CreationDate
-	creatorId: `${ number }`
-	creatorIp: string
-	id: `${ number }`
-	isDeleted: boolean
-	isEditable: boolean
-	isLocked: boolean
-	isReported: boolean
-	jsonModel: unknown | null
-	latestRevisionId: `${ number }`
-	modificationDate: CreationDate | null
-	position: number
-	rawContent: string
-	renderedContent: unknown | null
-	requesterId: `${ number }`
-	siteId: `${ number }`
-	threadId: `${ number }`
-	title: string
-	upvoteCount: number
-}
-
-export interface DiscussionThreadBody {
-	_embedded: {
-		contentImages: unknown[]
-		attachments: Array<{
-			atMentions: unknown[]
-			contentImages: unknown[]
-			openGraphs: unknown[]
-			polls: unknown[]
-			quizzes: unknown[]
-		}>
-		firstPost: DiscussionPost[]
-		userData: Array<{
-			hasReported: boolean
-			hasUpvoted: boolean
-			permissions: string[]
-		}>
-	}
-	createdBy: {
-		avatarUrl: string
-		badgePermission: string
-		id: `${ number }`
-		name: string
-	}
-	creationDate: CreationDate
-	firstPostId: `${ number }`
-	forumId: `${ number }`
-	forumName: string
-	funnel: string
-	id: `${ number }`
-	isDeleted: boolean
-	isEditable: boolean
-	isFollowed: boolean
-	isLocked: boolean
-	isReported: boolean
-	jsonModel: unknown | null
-	lastPostId: `${ number }`
-	latestRevisionId: `${ number }`
-	modificationDate: CreationDate
-	postCount: number
-	rawContent: string
-	renderedContent: unknown | null
-	requesterId: `${ number }`
-	siteId: `${ number }`
-	source: string
-	tags: unknown | null
-	title: string
-	trendingScore: number
-	upvoteCount: number
-}
-
-export interface DiscussionForumBody {
-	_embedded: {
-		contributors: Array<{
-			count: number
-			userInfo: Array<{
-				avatarUrl: string
-				badgePermission: string
-				id: `${ number }`
-				name: string
-			}>
-		}>
-		'doc:threads': DiscussionThreadBody[]
-	}
-	allowsThreads: boolean
-	creationDate: CreationDate
-	creatorId: `${ number }`
-	description: string | null
-	displayOrder: number
-	id: `${ number }`
-	imageUrl: string | null
-	isDeleted: boolean
-	isEditable: boolean
-	isLocked: boolean
-	latestContribution: {
-		author: number | null
-		date: CreationDate | null
-		item: string | null
-		itemId: number | null
-		forumId: number | null
-		siteId: number | null
-	} | null
-	name: string
-	parentId: '1'
-	postCount: 0
-	recentContributors: Array<{
-		avatarUrl: string
-		badgePermission: string
-		id: `${ number }`
-		name: string
-	}> | null
-	requesterId: `${ number }`
-	siteId: `${ number }`
-	threadCount: 0
-}
-
-export interface DiscussionForums extends Omit<DiscussionForumBody, '_embedded'> {
-	_embedded: {
-		'doc:forum': Array<Omit<DiscussionForumBody, '_embedded'>>
-	}
-}
-
-export interface DiscussionLeaderboard {
-	days: number
-	users: Array<{
-		rank: number
+	export interface ArticleComments {
+		readOnlyMode: false
+		reportedData: {
+			posts: Report[]
+		}
+		threads: ArticleComment[]
 		totalCount: number
-		userInfo: {
-			avatarUrl: string
-			badgePermission: string
-			id: `${ number }`
-			name: string
-		}
-	}>
-}
+	}
 
-export interface DiscussionReportLeaderboard extends DiscussionLeaderboard {
-	users: Array<DiscussionLeaderboard[ 'users' ][ number ] & {
-		actionBreakdown: {
-			deleted: number
-			queued: number
-			validated: number
-		}
-	}>
-}
+	export interface Tag {
+		articleId: PostId
+		articleTitle: string
+		relativeUrl: string
+		siteId: PostId
+		image: null
+	}
 
-export interface DiscussionReportedPosts {
-	_embedded: {
+	export interface DiscussionEmbedded {
+		attachments: Attachments
+		contentImages: ContentImage[]
+		userData: [ {
+			hasReported: boolean
+			hasUpvoted: boolean
+			permissions?: DiscussionThreadPermissions[]
+		} ]
+	}
+
+	export interface BaseDiscussionPost extends Resource {
+		creatorId: PostId
+		creatorIp: string
+		jsonModel: string
+		rawContent: string
+		renderedContent: unknown | null
+	}
+
+	export interface DiscussionPostEmbedded extends DiscussionEmbedded {
+		latestRevision: [ BaseDiscussionPost & {
+			postId: PostId
+		} ]
+		thread?: [ {
+			containerId: PostId
+			containerType: ContainerTypes.Forum
+			creatorId: PostId
+			firstPost: [ {
+				attachments: Attachments
+				createdBy: User
+				createdByIp: unknown | null
+				id: PostId
+				jsonModel: string
+				renderedContent: null
+				threadId: PostId
+				title: string
+			} ]
+			isDeleted: boolean
+			isEditable: boolean
+			isLocked: boolean
+			isReported: boolean
+			postCount: PostId
+			tags: Tag[]
+			title: string
+		} ]
+	}
+
+	export interface DiscussionPost extends BaseDiscussionPost {
+		_embedded: DiscussionPostEmbedded
+		createdBy: User
+		isDeleted: boolean
+		isEditable: boolean
+		isLocked: boolean
+		isReported: boolean
+		latestRevisionId: PostId
+		modificationDate: Date
+		position: number
+		requesterId: PostId
+		siteId: PostId
+		threadId: PostId
+		title: string
+		upvoteCount: number
+	}
+
+	export type DiscussionThreadPermissions = 'canDelete' | 'canUndelete' | 'canSuppress' | 'canModerate' | 'canLock' | 'canUnlock' | 'canMove' | 'canEdit'
+
+	export interface DiscussionThreadEmbedded extends DiscussionEmbedded {
+		'doc:posts': DiscussionPost[]
+		// Seems to be always empty
+		contributors: [ {
+			count: 0
+			userInfo: []
+		} ]
+		firstPost: [ DiscussionPost ]
+	}
+
+	export interface DiscussionThread extends Resource {
+		_embedded: DiscussionThreadEmbedded
+		createdBy: User
+		firstPostId: PostId
+		forumId: PostId
+		forumName: string
+		funnel: 'TEXT'
+		isDeleted: boolean
+		isEditable: boolean
+		isFollowed: boolean
+		isLocked: boolean
+		isReported: boolean
+		jsonModel: string | null
+		lastPostId: PostId
+		latestRevisionId: PostId
+		modificationDate: Date
+		postCount: number
+		rawContent: string
+		readOnlyMode: boolean
+		renderedContent: unknown | null
+		requesterId: PostId
+		siteId: PostId
+		source: 'DESKTOP_WEB_FEPO'
+		tags: Tag[]
+		title: string
+		trendingScore: number
+		upvoteCount: number
+	}
+
+	export interface DiscussionThreadContainer {
+		_embedded: {
+			contributors: Array<{
+				count: 0
+				userInfo: User[]
+			}>
+			forums: DiscussionForum[]
+			threads: DiscussionThread[]
+		}
+	}
+
+	export interface BaseDiscussionForum extends Resource {
+		allowsThreads: boolean
+		creatorId: PostId
+		description: string | null
+		displayOrder: number
+		imageUrl: null
+		isDeleted: boolean
+		isEditable: boolean
+		isLocked: boolean
+		latestContribution: {
+			author: number | null
+			date: Date | null
+			forumId: number | null
+			item: ContainerTypes.Post | ContainerTypes.Reply | null
+			itemId: number | null
+			siteId: number | null
+		}
+		name: string
+		parentId: '1'
+		postCount: number
+		recentContributors: User[]
+		requesterId: PostId
+		siteId: PostId
+		threadCount: number
+	}
+
+	export interface DiscussionForum extends BaseDiscussionForum {
+		description: null
+		latestContribution: {
+			[ K in keyof BaseDiscussionForum[ 'latestContribution' ] ]: NonNullable<BaseDiscussionForum[ 'latestContribution' ][ K ]>
+		}
+	}
+
+	export interface DiscussionRootForum extends BaseDiscussionForum {
+		_embedded: {
+			'doc:forum': DiscussionForum[]
+		}
+		allowsThreads: false
+		creatorId: '1'
+		description: string
+		displayOrder: 0
+		id: '1'
+		latestContribution: {
+			[ K in keyof BaseDiscussionForum[ 'latestContribution' ] ]: null
+		}
+		name: 'Root Forum'
+		postCount: 0
+		recentContributors: []
+		threadCount: 0
+	}
+
+	export interface DiscussionLeaderboard {
+		days: number
+		users: Array<{
+			rank: number
+			totalCount: number
+			userInfo: User
+		}>
+	}
+
+	export interface DiscussionReportLeaderboard extends DiscussionLeaderboard {
+		users: Array<DiscussionLeaderboard[ 'users' ][ number ] & {
+			actionBreakdown: {
+				deleted: number
+				queued: number
+				validated: number
+			}
+		}>
+	}
+
+	export interface DiscussionPostList {
+		contributors: [ {
+			count: 0
+			userInfo: User[]
+		} ]
 		count: [ {
 			ARTICLE_COMMENT: number
 			FORUM: number
 			WALL: number
 			total: number
 		} ]
-		contributors: [ {
-			count: number
-			userInfo: Array<{
-				avatarUrl: string
-				badgePermission: string
-				id: `${ number }`
-				name: string
-			}>
-		} ]
-		'doc:posts': Array<{
-			_embedded: {
-				attachments: [ {
-					atMentions: unknown[]
-					contentImages: unknown[]
-					openGraphs: unknown[]
-					polls: unknown[]
-					quizzes: unknown[]
-				} ]
-				contentImages: unknown[]
-				latestRevision: [ {
-					creationDate: CreationDate
-					creatorId: `${ number }`
-					creatorIp: string
-					id: `${ number }`
-					jsonModel: unknown | null
-					postId: `${ number }`
-					rawContent: string
-					renderedContent: unknown | null
-				} ]
-				thread: [ {
-					containerId: `${ number }`
-					containerType: string
-					creatorId: `${ number }`
-					firstPost: DiscussionPost
-					isDeleted: boolean
-					isEditable: boolean
-					isLocked: boolean
-					isReported: boolean
-					postCount: `${ number }`
-					tags: unknown[]
-					title: string
-				} ]
-				userData: [ {
-					hasReported: boolean
-					hasUpvoted: boolean
-					permissions: string[]
-				} ]
-			}
-			createdBy: {
-				avatarUrl: string
-				badgePermission: string
-				id: `${ number }`
-				name: string
-			}
-			creationDate: CreationDate
-			creatorId: `${ number }`
-			creatorIp: string
-			forumId: `${ number }`
-			forumName: string
-			id: `${ number }`
-			isDeleted: boolean
-			isEditable: boolean
-			isLocked: boolean
+		'doc:posts': Array<DiscussionPost & {
 			isReply: boolean
-			isReported: boolean
-			jsonModel: unknown | null
-			latestRevisionId: `${ number }`
-			modificationDate: CreationDate | null
-			position: number
-			rawContent: string
-			renderedContent: unknown | null
-			requesterId: `${ number }`
-			siteId: `${ number }`
-			threadCreatedBy: {
-				avatarUrl: string
-				badgePermission: string
-				id: `${ number }`
-				name: string
-			}
-			threadId: `${ number }`
-			title: string | null
-			upvoteCount: number
+			threadCreatedBy: User
 		}>
-		wallOwners: Array<{
-			userId: `${ number }`
-			wallContainerId: `${ number }`
+		wallOwners?: Array<{
+			userId: PostId
+			wallContainerId: PostId
 		}>
 	}
-	postCount: `${ number }`
-	readOnlyMode: boolean
-}
 
-export interface DiscussionPostReports {
-	posts: [] | [ {
-		containerType: string
-		count: number
-		postId: `${ number }`
-		userInfo: Array<{
-			avatarUrl: string
-			badgePermission: string
-			id: `${ number }`
-			name: string
-		}>
-	} ]
-}
-
-export interface DiscussionReply {
-	_embedded: {
-		attachments: [ {
-			atMentions: unknown[]
-			contentImages: unknown[]
-			openGraphs: unknown[]
-			polls: unknown[]
-			quizzes: unknown[]
-		} ]
-		contentImages: unknown[]
-		openGraph: unknown[]
-		userData: [ {
-			hasReported: boolean
-			hasUpvoted: boolean
-			permissions: string[]
-		} ]
+	export interface DiscussionPostListContainer {
+		_embedded: DiscussionPostList
+		postCount: PostId
+		readOnlyMode: boolean
 	}
-	createdBy: {
-		avatarUrl: string
-		badgePermission: string
-		id: `${ number }`
-		name: string
-	}
-	createdIp: string
-	creationDate: CreationDate
-	creatorId: `${ number }`
-	id: `${ number }`
-	isDeleted: boolean
-	isEditable: boolean
-	isLocked: boolean
-	isReported: boolean
-	latestRevisionId: `${ number }`
-	position: number
-	rawContent: string
-	requesterId: `${ number }`
-	siteId: `${ number }`
-	threadId: `${ number }`
-	upvoteCount: number
-}
-
-export interface DiscussionPostList {
-	_embedded: DiscussionReportedPosts[ '_embedded' ]
-	postCount: `${ number }`
-	readOnlyMode: boolean
-}
-
-export interface DiscussionThreadList {
-	_embedded: {
-		contributors: Array<{
-			count: number
-			userInfo: Array<{
-				avatarUrl: string
-				badgePermission: string
-				id: `${ number }`
-				name: string
-			}>
-		}>
-		forums: DiscussionForumBody[]
-		threads: DiscussionThreadBody[]
-	}
-	readOnlyMode: boolean
-	requesterId: `${ number }`
-	postCount: number
-	siteId: number
-	threadCount: number
 }
