@@ -1,5 +1,6 @@
 import { BaseController } from '../BaseController'
 import type { DiscussionsAPI } from './types'
+import type { DocNode } from '@atlaskit/adf-schema'
 import type { WikiaEndpoint } from '../../endpoints'
 
 export type CreateThreadOptions = {
@@ -13,7 +14,7 @@ export type CreateThreadOptions = {
 	jsonModel?: never
 } | {
 	body?: never
-	jsonModel: Record<string, unknown>
+	jsonModel: DocNode | Record<string, unknown>
 } )
 
 export type UpdateThreadOptions = Omit<CreateThreadOptions, 'siteId'> & {

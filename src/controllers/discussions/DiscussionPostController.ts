@@ -1,5 +1,6 @@
 import { BaseController } from '../BaseController'
 import type { DiscussionsAPI } from './types'
+import type { DocNode } from '@atlaskit/adf-schema'
 import type { WikiaEndpoint } from '../../endpoints'
 
 export type CreateReplyOptions = {
@@ -11,7 +12,7 @@ export type CreateReplyOptions = {
 	jsonModel?: never
 } | {
 	body?: never
-	jsonModel: Record<string, unknown>
+	jsonModel: DocNode | Record<string, unknown>
 } )
 
 export class DiscussionPostController extends BaseController<WikiaEndpoint> {
