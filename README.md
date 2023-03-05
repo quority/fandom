@@ -1,100 +1,96 @@
-# mw.js
-> Typed MediaWiki API client for node.js using TypeScript.
+<div align="center">
 
-Perform different actions over the MediaWiki API, both logged out and logged in.
+![Logo](https://avatars.githubusercontent.com/u/126923974?s=200&v=4)
 
-- [mw.js](#mwjs)
+[![GitHub](https://img.shields.io/github/license/quority/fandom)](https://github.com/quority/fandom/blob/main/LICENSE.md)
+[![npm](https://img.shields.io/npm/v/@quority/fandom?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@quority/fandom)
+</div>
+
+---
+[@quority/core](https://www.npmjs.com/package/@quority/core) extension to support Fandom-specific features.
+
+- [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-	- [Wiki Network](#wiki-network)
-		- [Fandom](#fandom)
+	- [Wiki instance](#wiki-instance)
+	- [Discussions](#discussions)
+	- [/wikia.php](#wikiaphp)
+
+# Features
+- Written in TypeScript.
+- Extends @quority/core to support Fandom Discussions.
+- Use interwiki format to create instances instead of the full API URL.
+- Full TypeScript and JavaScript support.
+- Can be used with CJS (`require`) or ESM (`import`).
 
 # Installation
-```
+```bash
 # npm
-npm i mw.js
+npm install @quority/fandom
 
 # yarn
-yarn add mw.js
+yarn add @quority/fandom
 ```
+You don't need to install `@quority/core`, as this package will export a `Wiki` instance that works in the same way but includes other methods. However, core types aren't re-exported; if you need to use the types in your function signatures, consider adding `@quority/core` as a development dependency.
 
 # Usage
-> For a wiki network like Fandom, refer to [§ Wiki Network](#wiki-network).
-
-Create a generic `Wiki` instance for any wiki using the `Wiki` class. The only mandatory parameter is the URL to its `/api.php`:
+For most uses, you will want to import the `Wiki` constructor. Code snippets will use ESM syntax, but you can use `require` instead:
 
 ```ts
-import { Wiki } from 'mw.js'
-const wikipedia = new Wiki( {
-	api: 'https://en.wikipedia.org/w/api.php'
+// ESM
+import { Wiki } from '@quority/fandom'
+
+// CJS
+const { Wiki } = require( '@quority/fandom' )
+```
+
+## Wiki instance
+```ts
+import { Wiki } from '@quority/core'
+
+const community = new Wiki( {
+	api: 'community'
+} )
+const spanishGenshin = new Wiki( {
+	api: 'es.genshin-impact'
+} )
+const polishGothic = new Wiki( {
+	api: 'pl.gothic'
 } )
 ```
 
-To log in into a bot account using your [BotPasswords](https://www.mediawiki.org/wiki/Manual:Bot_passwords) credentials, create a `Bot` instance as follows:
+> :link: If you are not familiar with interwikis, take a look at the [help page](https://community.fandom.com/wiki/Help:Interwiki_link).
+
+## Discussions
+You can interact with most of the Discussions API using `@quority/fandom`. The typings for some responses may be inaccurate, if you find any error make sure to create an issue.
+
+For most actions, you will need to login into your bot account. This requires your account's username and password, **not** using BotPasswords.
+
+> :warning: If you intend to run scripts in a server or anywhere but your local machine, you should use a dedicated bot account instead, just in case you accidentally leak the password it is your bot's and not yours.
+> 
+> If that happens, make sure to **[change your password](https://auth.fandom.com/auth/settings)** as soon as possible.
 
 ```ts
-import { Bot, Wiki } from 'mw.js'
-const wikipedia = new Wiki( {
-	api: 'https://en.wikipedia.org/w/api.php'
+const wiki = new Wiki( {
+	// it might be a good idea to use a test wiki instead
+	api: 'community'
 } )
-const bot = new Bot( {
-	password: 'YOUR_PASSWORD',
-	username: 'Username@Botname',
-	wiki: wikipedia
-} )
-await bot.login()
+await wiki.platform.login( 'Username', 'Password' )
 ```
 
-The pervious code will log in into your bot account on English Wikipedia. After that, you can perform any action your bot's passwords allows.
+After using `#login`, all requests made will be made with your session. All custom supported endpoints are available through `wiki.custom`; currently, it only includes `/wikia.php`, which you can access using `wiki.custom.wikia`.
 
-You only need to login if you wish to perform an action that requires an user's token, like a CSRF token (e.g. deleting, editing or protecting a page). For querying pages, `Wiki` is more than enough.
+## /wikia.php
+The endpoint includes most of the [Discussions API controllers](https://elderscrolls.fandom.com/wiki/User:Atvelonis/Bot/Discussions_API#API_controllers).
 
-## Wiki Network
-If you only need to work on a single wiki, the previous example should work for you. However, `mw.js` exports a `Fandom` class that facilitates some useful utilities for [Fandom](https://community.fandom.com)'s wikis.
-
-Other Wiki Networks may be added in the future, but feel free to create a PR and add your own.
-
-### Fandom
-Fandom's class allows to get wikis using only their interwiki. In case you are not familiar with interwikis:
-
-<table>
-	<tr>
-		<th> Interwiki </th>
-		<th> URL </th>
-	</tr>
-	<tr>
-		<td> community </td>
-		<td> https://community.fandom.com </td>
-	</tr>
-	<tr>
-		<td> es.genshin-impact </td>
-		<td> https://genshin-impact.fandom.com/es </td>
-	</tr>
-	<tr>
-		<td> pl.gothic </td>
-		<td> https://gothic.fandom.com/pl </td>
-	</tr>
-</table>
-
-To instantiate a `FandomWiki`, it is advisable to instantiate `Fandom` first:
-
+> 🧩 You can detach the controllers as you need to keep your code simpler and shorter. Both options work the same way:
 ```ts
-import { Fandom } from 'mw.js'
-const fandom = new Fandom()
-const wiki = fandom.getWiki( 'es.genshin-impact' )
+// Chain until you reach the controller
+const comments1 = await wiki.custom.wikia.ArticleCommentsController.getComments( 'Page 1' )
+const comments2 = await wiki.custom.wikia.ArticleCommentsController.getComments( 'Page 2' )
+
+// Or
+const comments = wiki.custom.wikia.ArticleCommentsController
+const comments1 = await comments.getComments( 'Page 1' )
+const comments2 = await comments.getComments( 'Page 2' )
 ```
-
-You can also login into an account through a `Fandom`'s method:
-
-```ts
-import { Fandom } from 'mw.js'
-const fandom = new Fandom()
-const wiki = fandom.getWiki( 'es.genshin-impact' )
-const bot = await fandom.login( {
-	password: 'YOUR_PASSWORD',
-	username: 'Username@Botname',
-	wiki
-} )
-```
-
-**Unlike `Bot#login`, `Fandom#login` returns a `FandomBot` instance after logging in.**
