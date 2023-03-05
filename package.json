@@ -57,5 +57,8 @@
   "dependencies": {
     "@sapphire/shapeshift": "^3.8.1",
     "@wikiscript/core": "^4.0.0-rc.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
