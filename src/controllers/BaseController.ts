@@ -1,4 +1,4 @@
-import { type BaseEndpoint, type RequestManager, sleep } from '@wikiscript/core'
+import { type BaseEndpoint, type RequestManager, sleep } from '@quority/core'
 import type { Fandom } from '../strategies'
 
 interface POSTOptions {

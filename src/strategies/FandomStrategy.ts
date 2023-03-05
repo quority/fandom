@@ -1,4 +1,4 @@
-import { BaseStrategy, type RequestManager, type TokensResponse, type Wiki } from '@wikiscript/core'
+import { BaseStrategy, type RequestManager, type TokensResponse, type Wiki } from '@quority/core'
 import { InvalidInterwikiError } from '../errors'
 import { s } from '@sapphire/shapeshift'
 import { WikiaEndpoint } from '../endpoints'

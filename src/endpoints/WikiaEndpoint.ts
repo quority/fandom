@@ -1,5 +1,5 @@
 import { ArticleCommentsController, DiscussionContributionController, DiscussionForumController, DiscussionLeaderboardController, DiscussionModerationController, DiscussionPermalinkController, DiscussionPollController, DiscussionPostController, DiscussionThreadController, DiscussionVoteController, FeedsAndPostsController, MessageWallController } from '../controllers'
-import { BaseEndpoint, type Wiki } from '@wikiscript/core'
+import { BaseEndpoint, type Wiki } from '@quority/core'
 import type { Fandom } from '../strategies'
 
 export class WikiaEndpoint extends BaseEndpoint<Fandom> {
