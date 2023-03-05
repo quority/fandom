@@ -33,9 +33,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bitomic/mwjs.git"
+    "url": "https://github.com/quority/fandom.git"
   },
-  "homepage": "https://github.com/bitomic/mwjs#readme",
+  "homepage": "https://github.com/quority/fandom#readme",
   "devDependencies": {
     "@types/form-data": "2.5.0",
     "@types/fs-extra": "9.0.13",
