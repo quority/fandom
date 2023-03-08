@@ -150,6 +150,7 @@ export namespace DiscussionsAPI {
 			isDeleted: boolean
 			isEditable: boolean
 			isLocked: boolean
+			isReply: boolean
 			isReported: boolean
 			postCount: PostId
 			tags: Tag[]
