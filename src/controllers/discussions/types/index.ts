@@ -164,6 +164,7 @@ export namespace DiscussionsAPI {
 		isDeleted: boolean
 		isEditable: boolean
 		isLocked: boolean
+		isReply: boolean
 		isReported: boolean
 		latestRevisionId: PostId
 		modificationDate: Date
