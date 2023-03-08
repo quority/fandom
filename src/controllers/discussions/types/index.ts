@@ -4,7 +4,8 @@ export namespace DiscussionsAPI {
 		ArticleComment = 'ARTICLE_COMMENT',
 		Forum = 'FORUM',
 		Post = 'POST',
-		Reply = 'REPLY'
+		Reply = 'REPLY',
+		Wall = 'WALL'
 	}
 
 	export type PostId = `${ number }`
@@ -134,7 +135,7 @@ export namespace DiscussionsAPI {
 		} ]
 		thread?: [ {
 			containerId: PostId
-			containerType: ContainerTypes.Forum
+			containerType: ContainerTypes
 			creatorId: PostId
 			firstPost: [ {
 				attachments: Attachments
