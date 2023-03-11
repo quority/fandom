@@ -15,6 +15,13 @@ export type CreateReplyOptions = {
 	jsonModel: DocNode | Record<string, unknown>
 } )
 
+export interface GetPostsOptions {
+	canViewHiddenPosts?: `${ boolean }`
+	canViewHiddenPostsInContainer?: `${ boolean }`
+	limit?: number
+	page?: number
+}
+
 export class DiscussionPostController extends BaseController<WikiaEndpoint> {
 	public readonly controller = 'DiscussionPost'
 
@@ -44,9 +51,10 @@ export class DiscussionPostController extends BaseController<WikiaEndpoint> {
 		return req.body.json() as Promise<DiscussionsAPI.DiscussionPost>
 	}
 
-	public async getPosts(): Promise<DiscussionsAPI.DiscussionPostListContainer> {
+	public async getPosts( options?: GetPostsOptions ): Promise<DiscussionsAPI.DiscussionPostListContainer> {
 		const req = await this.get( {
-			method: 'getPosts'
+			method: 'getPosts',
+			...options
 		} )
 		return req.body.json() as Promise<DiscussionsAPI.DiscussionPostListContainer>
 	}

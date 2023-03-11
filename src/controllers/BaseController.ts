@@ -22,7 +22,7 @@ export abstract class BaseController<Endpoint extends BaseEndpoint<Fandom>> {
 		this.request = endpoint.wiki.request
 	}
 
-	protected get( searchParams: Record<string, string> ): ReturnType<RequestManager[ 'raw' ]> {
+	protected get( searchParams: Record<string, string | number> ): ReturnType<RequestManager[ 'raw' ]> {
 		const usp = new URLSearchParams( {
 			controller: this.controller,
 			...searchParams
