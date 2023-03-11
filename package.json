@@ -57,10 +57,12 @@
   },
   "packageManager": "yarn@3.2.4",
   "dependencies": {
-    "@quority/core": "^4.0.1",
     "@sapphire/shapeshift": "^3.8.1"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "peerDependencies": {
+    "@quority/core": "*"
   }
 }
