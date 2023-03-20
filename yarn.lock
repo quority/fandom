@@ -181,15 +181,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@quority/core@npm:^4.0.3":
-  version: 4.0.3
-  resolution: "@quority/core@npm:4.0.3"
+"@quority/core@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "@quority/core@npm:4.0.4"
   dependencies:
     "@sapphire/shapeshift": ^3.8.1
     fs-extra: ^10.1.0
     tough-cookie: ^4.1.2
     undici: ^5.12.0
-  checksum: 2978b91d40bd27e20af69e2fe7ae32a87c664cad2c7ee62f276b2b2815fb7ee5e1bece3fc904a3e75073867ed3fda75259dfcc065ae62a296507f6f88782db21
+  checksum: 92aebf50aaaf0ac7bf30f03bdf54fa6853c7c93b8cd8b4d06280223dcf44dfd0739b7d83364ecd2b4ca39b84686f5c08832d08a08d15f00b97795586c9bd21a8
   languageName: node
   linkType: hard
 
@@ -199,7 +199,7 @@ __metadata:
   dependencies:
     "@atlaskit/adf-schema": ^25.2.1
     "@atlaskit/adf-utils": ^18.0.3
-    "@quority/core": ^4.0.3
+    "@quority/core": ^4.0.4
     "@sapphire/shapeshift": ^3.8.1
     "@types/form-data": 2.5.0
     "@types/fs-extra": 11.0.1
