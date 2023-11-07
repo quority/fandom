@@ -42,7 +42,7 @@
     "@atlaskit/adf-utils": "^18.0.3",
     "@quority/core": "^4.0.3",
     "@types/form-data": "2.5.0",
-    "@types/fs-extra": "11.0.1",
+    "@types/fs-extra": "11.0.4",
     "@types/mocha": "10.0.0",
     "@types/node": "18.11.9",
     "@types/tough-cookie": "4.0.2",
