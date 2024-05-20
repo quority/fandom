@@ -59,7 +59,7 @@
   },
   "packageManager": "yarn@3.2.4",
   "dependencies": {
-    "@sapphire/shapeshift": "^3.8.1"
+    "@sapphire/shapeshift": "^4.0.0"
   },
   "publishConfig": {
     "access": "public"
