@@ -5,7 +5,18 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@atlaskit/adf-schema@npm:^25.2.0, @atlaskit/adf-schema@npm:^25.2.1":
+"@atlaskit/adf-schema-generator@npm:^2.1.0":
+  version: 2.1.2
+  resolution: "@atlaskit/adf-schema-generator@npm:2.1.2"
+  dependencies:
+    "@atlaskit/editor-prosemirror": ^7.2.0
+    "@babel/runtime": ^7.0.0
+    lodash: ^4.17.21
+  checksum: af42630facb856277991a01bc92df0cba8b1042343c8473253f2d1cd2fc20f4dfb1af60a191883b89665adac27a1ddb1e4be10ea82beb1107d0b78ee8d4663bd
+  languageName: node
+  linkType: hard
+
+"@atlaskit/adf-schema@npm:^25.2.0":
   version: 25.2.1
   resolution: "@atlaskit/adf-schema@npm:25.2.1"
   dependencies:
@@ -25,6 +36,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@atlaskit/adf-schema@npm:^51.5.23":
+  version: 51.5.23
+  resolution: "@atlaskit/adf-schema@npm:51.5.23"
+  dependencies:
+    "@atlaskit/adf-schema-generator": ^2.1.0
+    "@atlaskit/editor-prosemirror": ^7.3.0
+    "@atlaskit/tmp-editor-statsig": ^31.0.0
+    "@babel/runtime": ^7.0.0
+    css-color-names: 0.0.4
+    linkify-it: ^3.0.3
+    memoize-one: ^6.0.0
+  checksum: 83731e121b0ad95cf7171dc3b5ea67ba8cbe1eb8fd2f6bbcf9128e72828d2da4493d772e40b43a8c2584c019615d3a105b9bca322eb24b3b3d54702b379c4875
+  languageName: node
+  linkType: hard
+
 "@atlaskit/adf-utils@npm:^18.0.3":
   version: 18.0.3
   resolution: "@atlaskit/adf-utils@npm:18.0.3"
@@ -33,6 +59,28 @@ __metadata:
     "@atlaskit/codemod-utils": ^4.1.0
     "@babel/runtime": ^7.0.0
   checksum: ad6ec3ae88ea1aeb0a362863c6cbddee8d860f7e3a4c148c9d8df4301e4023414c79e62ae61845649e1dd53d2f79979e59b770219ace00db7cc7e7285781ca3f
+  languageName: node
+  linkType: hard
+
+"@atlaskit/atlassian-context@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "@atlaskit/atlassian-context@npm:0.6.0"
+  dependencies:
+    "@babel/runtime": ^7.0.0
+  peerDependencies:
+    react: ^18.2.0
+  checksum: 92fe458143a15ca32eb94806ca4399ab86bacd89aab704ef59cd6fcc1ffc90cbc1f0b14b73e6c7ed84e7af25f70cd7e24f6b221fc88a5b9bfd1504478527b067
+  languageName: node
+  linkType: hard
+
+"@atlaskit/browser-apis@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "@atlaskit/browser-apis@npm:0.0.1"
+  dependencies:
+    "@babel/runtime": ^7.0.0
+  peerDependencies:
+    react: ^18.2.0
+  checksum: 868c9930fd849f367c824f25a307137d136bc3e90a0bf00c45317977c560871c3ff95567b5934864acc0a788c5eb3f66c309beaf5b351481189cd092a832e6fa
   languageName: node
   linkType: hard
 
@@ -54,6 +102,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@atlaskit/editor-prosemirror@npm:^7.2.0, @atlaskit/editor-prosemirror@npm:^7.3.0":
+  version: 7.3.0
+  resolution: "@atlaskit/editor-prosemirror@npm:7.3.0"
+  dependencies:
+    "@babel/runtime": ^7.0.0
+    prosemirror-commands: 1.7.1
+    prosemirror-dropcursor: 1.8.2
+    prosemirror-history: 1.5.0
+    prosemirror-keymap: 1.2.3
+    prosemirror-markdown: 1.13.2
+    prosemirror-model: 1.25.4
+    prosemirror-state: 1.4.4
+    prosemirror-transform: 1.10.5
+    prosemirror-utils: 1.2.2
+    prosemirror-view: 1.41.5
+  checksum: 1dc414d631e5de41fad009f982169567f8b0cc1389c411fe2dfa861eac440a8e875f37f3da8b61b05a37fc452e18fcbb052f4c9b7352f03282661fc4306759e9
+  languageName: node
+  linkType: hard
+
 "@atlaskit/editor-tables@npm:^2.2.0":
   version: 2.2.4
   resolution: "@atlaskit/editor-tables@npm:2.2.4"
@@ -66,6 +133,73 @@ __metadata:
     prosemirror-utils: ^1.0.0-0
     prosemirror-view: 1.23.2
   checksum: da6667fa5313f9739530d79e33d826fe59428b5d48e649933c41714e61438f102ce27be5f1e82f14dcedab7d129105699b30aa386d03a7c469f90aecbb653586
+  languageName: node
+  linkType: hard
+
+"@atlaskit/feature-gate-js-client@npm:^5.5.0":
+  version: 5.5.7
+  resolution: "@atlaskit/feature-gate-js-client@npm:5.5.7"
+  dependencies:
+    "@atlaskit/atlassian-context": ^0.6.0
+    "@babel/runtime": ^7.0.0
+    "@statsig/client-core": ^3.21.1
+    "@statsig/js-client": ^3.21.1
+    eventemitter3: ^4.0.0
+  checksum: 8b09779e98185e15316d783cbf9981828a5632f4565fee92c4a737750578b797aa0b48c9540838379dcd19ed337dc025ab1c704d8d63fe7bbce54ab21f27ba38
+  languageName: node
+  linkType: hard
+
+"@atlaskit/interaction-context@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "@atlaskit/interaction-context@npm:3.1.0"
+  dependencies:
+    "@babel/runtime": ^7.0.0
+  peerDependencies:
+    react: ^18.2.0
+  checksum: 93e9916ce94fd400febf3dab3c37dc19416bba63b8f61ba67eeb525a32f86ab97f3899584f3e26e3290138da286cade4bd2fc307e45dd7743afe85303dcfde45
+  languageName: node
+  linkType: hard
+
+"@atlaskit/platform-feature-flags@npm:^1.1.0":
+  version: 1.1.3
+  resolution: "@atlaskit/platform-feature-flags@npm:1.1.3"
+  dependencies:
+    "@atlaskit/feature-gate-js-client": ^5.5.0
+    "@babel/runtime": ^7.0.0
+  checksum: 2f7a974d185d13f50fdfbfedbe642087552772ad3bf5511480c783e975f417d4ef47bb5d72e3d3e20c0d7a9b5663730c6d6f40c591abc51b11fb32b7f9ec76c7
+  languageName: node
+  linkType: hard
+
+"@atlaskit/react-ufo@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "@atlaskit/react-ufo@npm:5.3.0"
+  dependencies:
+    "@atlaskit/browser-apis": ^0.0.1
+    "@atlaskit/feature-gate-js-client": ^5.5.0
+    "@atlaskit/interaction-context": ^3.1.0
+    "@atlaskit/platform-feature-flags": ^1.1.0
+    "@babel/runtime": ^7.0.0
+    "@opentelemetry/api": ^1.9.0
+    bind-event-listener: ^3.0.0
+    bowser-ultralight: ^1.0.6
+    scheduler: 0.23.2
+    uuid: ^3.1.0
+  peerDependencies:
+    react: ^18.2.0
+  checksum: 6b848221befa1a25830f0b81e30205787f1488192c768ee50a7738e390e5017e91a1e5ad94342b8bcb90e577fd4eb5e2012a6e52a0583f7b7be182dc30c045b1
+  languageName: node
+  linkType: hard
+
+"@atlaskit/tmp-editor-statsig@npm:^31.0.0":
+  version: 31.1.0
+  resolution: "@atlaskit/tmp-editor-statsig@npm:31.1.0"
+  dependencies:
+    "@atlaskit/feature-gate-js-client": ^5.5.0
+    "@atlaskit/react-ufo": ^5.3.0
+    "@babel/runtime": ^7.0.0
+  peerDependencies:
+    react: ^18.2.0
+  checksum: bc8f5725840f3aa9716a04fe73aa3a0eb8be98ba15d9be2996cf5771335cbf266de81aac84197bbc23194338e552bd4c79018298207feefacc1e7f313d242779
   languageName: node
   linkType: hard
 
@@ -181,6 +315,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@opentelemetry/api@npm:^1.9.0":
+  version: 1.9.0
+  resolution: "@opentelemetry/api@npm:1.9.0"
+  checksum: 9e88e59d53ced668f3daaecfd721071c5b85a67dd386f1c6f051d1be54375d850016c881f656ffbe9a03bedae85f7e89c2f2b635313f9c9b195ad033cdc31020
+  languageName: node
+  linkType: hard
+
 "@quority/core@npm:^4.0.3":
   version: 4.0.3
   resolution: "@quority/core@npm:4.0.3"
@@ -197,7 +338,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@quority/fandom@workspace:."
   dependencies:
-    "@atlaskit/adf-schema": ^25.2.1
+    "@atlaskit/adf-schema": ^51.5.23
     "@atlaskit/adf-utils": ^18.0.3
     "@quority/core": ^4.0.3
     "@sapphire/shapeshift": ^3.8.1
@@ -228,6 +369,22 @@ __metadata:
     fast-deep-equal: ^3.1.3
     lodash: ^4.17.21
   checksum: 2a5954c76ee9a91506ae269141ffd2d71e05891c7f1618d0acbf3670312f0b473e356f9c3dafe484d8dc89282d7554f1fd7d720a2a3b0e921fb4e969d09513ee
+  languageName: node
+  linkType: hard
+
+"@statsig/client-core@npm:3.32.0, @statsig/client-core@npm:^3.21.1":
+  version: 3.32.0
+  resolution: "@statsig/client-core@npm:3.32.0"
+  checksum: 2a31676b8e2956c65d6d34eb426cddce24aa7bad23a079c9543192c9387debffe47e9c8da0e57cec68e4df0e7b8c2bd43e8d38b9b4b576ede6b4749ea24ecc7f
+  languageName: node
+  linkType: hard
+
+"@statsig/js-client@npm:^3.21.1":
+  version: 3.32.0
+  resolution: "@statsig/js-client@npm:3.32.0"
+  dependencies:
+    "@statsig/client-core": 3.32.0
+  checksum: ca7d8da7bef526c41d5660de55881877f88733e9a8df6823b8d8056277abe61409ec01a0dcbe9186a01252eee57fae51e0982408ee5fea82de219595b3c4c728
   languageName: node
   linkType: hard
 
@@ -277,6 +434,30 @@ __metadata:
   version: 2.1.0
   resolution: "@types/linkify-it@npm:2.1.0"
   checksum: df606ec9c1edc08666f66e83cf2de311cacd08534cc5b2d0f44f584b2fe72c47d62beeb1cb065e25c027161dbfc370e0d96b5f69d232fd97cba45ad0b756265b
+  languageName: node
+  linkType: hard
+
+"@types/linkify-it@npm:^5":
+  version: 5.0.0
+  resolution: "@types/linkify-it@npm:5.0.0"
+  checksum: ec98e03aa883f70153a17a1e6ed9e28b39a604049b485daeddae3a1482ec65cac0817520be6e301d99fd1a934b3950cf0f855655aae6ec27da2bb676ba4a148e
+  languageName: node
+  linkType: hard
+
+"@types/markdown-it@npm:^14.0.0":
+  version: 14.1.2
+  resolution: "@types/markdown-it@npm:14.1.2"
+  dependencies:
+    "@types/linkify-it": ^5
+    "@types/mdurl": ^2
+  checksum: ad66e0b377d6af09a155bb65f675d1e2cb27d20a3d407377fe4508eb29cde1e765430b99d5129f89012e2524abb5525d629f7057a59ff9fd0967e1ff645b9ec6
+  languageName: node
+  linkType: hard
+
+"@types/mdurl@npm:^2":
+  version: 2.0.0
+  resolution: "@types/mdurl@npm:2.0.0"
+  checksum: 78746e96c655ceed63db06382da466fd52c7e9dc54d60b12973dfdd110cae06b9439c4b90e17bb8d4461109184b3ea9f3e9f96b3e4bf4aa9fe18b6ac35f283c8
   languageName: node
   linkType: hard
 
@@ -668,6 +849,20 @@ __metadata:
   version: 2.2.0
   resolution: "binary-extensions@npm:2.2.0"
   checksum: ccd267956c58d2315f5d3ea6757cf09863c5fc703e50fbeb13a7dc849b812ef76e3cf9ca8f35a0c48498776a7478d7b4a0418e1e2b8cb9cb9731f2922aaad7f8
+  languageName: node
+  linkType: hard
+
+"bind-event-listener@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "bind-event-listener@npm:3.0.0"
+  checksum: 3b8d293587251eedac3246b065feffc6a6fa09a7efe4cf88fc53ee9186b5b498922fd391a1b71f690aad24f966140d6b7cfcc16de9998e1ff27bca2c158f80a5
+  languageName: node
+  linkType: hard
+
+"bowser-ultralight@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "bowser-ultralight@npm:1.0.6"
+  checksum: f619f11b75596f1f8111727c72fa08a55a025b990fbedae1532b0a00781c6afc1f4652cd2889c659ae8f32cc3bceba6e97f56141824250e40aeaac28adef35a2
   languageName: node
   linkType: hard
 
@@ -1064,6 +1259,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"entities@npm:^4.4.0":
+  version: 4.5.0
+  resolution: "entities@npm:4.5.0"
+  checksum: 853f8ebd5b425d350bffa97dd6958143179a5938352ccae092c62d1267c4e392a039be1bae7d51b6e4ffad25f51f9617531fedf5237f15df302ccfb452cbf2d7
+  languageName: node
+  linkType: hard
+
 "env-paths@npm:^2.2.0":
   version: 2.2.1
   resolution: "env-paths@npm:2.2.1"
@@ -1447,6 +1649,13 @@ __metadata:
   version: 2.0.3
   resolution: "esutils@npm:2.0.3"
   checksum: 22b5b08f74737379a840b8ed2036a5fb35826c709ab000683b092d9054e5c2a82c27818f12604bfc2a9a76b90b6834ef081edbc1c7ae30d1627012e067c6ec87
+  languageName: node
+  linkType: hard
+
+"eventemitter3@npm:^4.0.0":
+  version: 4.0.7
+  resolution: "eventemitter3@npm:4.0.7"
+  checksum: 1875311c42fcfe9c707b2712c32664a245629b42bb0a5a84439762dd0fd637fc54d078155ea83c2af9e0323c9ac13687e03cfba79b03af9f40c89b4960099374
   languageName: node
   linkType: hard
 
@@ -2022,6 +2231,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"js-tokens@npm:^3.0.0 || ^4.0.0":
+  version: 4.0.0
+  resolution: "js-tokens@npm:4.0.0"
+  checksum: 8a95213a5a77deb6cbe94d86340e8d9ace2b93bc367790b260101d2f36a2eaf4e4e22d9fa9cf459b38af3a32fb4190e638024cf82ec95ef708680e405ea7cc78
+  languageName: node
+  linkType: hard
+
 "js-yaml@npm:4.1.0, js-yaml@npm:^4.1.0":
   version: 4.1.0
   resolution: "js-yaml@npm:4.1.0"
@@ -2097,6 +2313,24 @@ __metadata:
   dependencies:
     uc.micro: ^1.0.1
   checksum: d198871d0b3f3cfdb745dae564bfd6743474f20cd0ef1057e6ca29451834749e7f3da52b59b4de44e98f31a1e5c71bdad160490d4ae54de251cbcde57e4d7837
+  languageName: node
+  linkType: hard
+
+"linkify-it@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "linkify-it@npm:3.0.3"
+  dependencies:
+    uc.micro: ^1.0.1
+  checksum: 31367a4bb70c5bbc9703246236b504b0a8e049bcd4e0de4291fa50f0ebdebf235b5eb54db6493cb0b1319357c6eeafc4324c9f4aa34b0b943d9f2e11a1268fbc
+  languageName: node
+  linkType: hard
+
+"linkify-it@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "linkify-it@npm:5.0.0"
+  dependencies:
+    uc.micro: ^2.0.0
+  checksum: b0b86cadaf816b64c947a83994ceaad1c15f9fe7e079776ab88699fb71afd7b8fc3fd3d0ae5ebec8c92c1d347be9ba257b8aef338c0ebf81b0d27dcf429a765a
   languageName: node
   linkType: hard
 
@@ -2203,6 +2437,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"loose-envify@npm:^1.1.0":
+  version: 1.4.0
+  resolution: "loose-envify@npm:1.4.0"
+  dependencies:
+    js-tokens: ^3.0.0 || ^4.0.0
+  bin:
+    loose-envify: cli.js
+  checksum: 6517e24e0cad87ec9888f500c5b5947032cdfe6ef65e1c1936a0c48a524b81e65542c9c3edc91c97d5bddc806ee2a985dbc79be89215d613b1de5db6d1cfe6f4
+  languageName: node
+  linkType: hard
+
 "lru-cache@npm:^6.0.0":
   version: 6.0.0
   resolution: "lru-cache@npm:6.0.0"
@@ -2233,6 +2478,29 @@ __metadata:
     socks-proxy-agent: ^6.0.0
     ssri: ^8.0.0
   checksum: 0eb371c85fdd0b1584fcfdf3dc3c62395761b3c14658be02620c310305a9a7ecf1617a5e6fb30c1d081c5c8aaf177fa133ee225024313afabb7aa6a10f1e3d04
+  languageName: node
+  linkType: hard
+
+"markdown-it@npm:^14.0.0":
+  version: 14.1.1
+  resolution: "markdown-it@npm:14.1.1"
+  dependencies:
+    argparse: ^2.0.1
+    entities: ^4.4.0
+    linkify-it: ^5.0.0
+    mdurl: ^2.0.0
+    punycode.js: ^2.3.1
+    uc.micro: ^2.1.0
+  bin:
+    markdown-it: bin/markdown-it.mjs
+  checksum: d6d55865c60debc4cc21d7288f0f6ea04ca055af79c58c467a29c949a289b7e679912c2575d79edb20f55ff3b4548f75b1e1184f939223fa32b08331c5fee81c
+  languageName: node
+  linkType: hard
+
+"mdurl@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "mdurl@npm:2.0.0"
+  checksum: 880bc289ef668df0bb34c5b2b5aaa7b6ea755052108cdaf4a5e5968ad01cf27e74927334acc9ebcc50a8628b65272ae6b1fd51fae1330c130e261c0466e1a3b2
   languageName: node
   linkType: hard
 
@@ -2773,6 +3041,40 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prosemirror-commands@npm:1.7.1":
+  version: 1.7.1
+  resolution: "prosemirror-commands@npm:1.7.1"
+  dependencies:
+    prosemirror-model: ^1.0.0
+    prosemirror-state: ^1.0.0
+    prosemirror-transform: ^1.10.2
+  checksum: 2316c40ea25d8e086aaa8571e4198c3d2c8f698c0aaed23e1c04354ec72da1bbb5f0c6e77beec510684056e1e92480c21111035543f03fd1a21d90f551e54317
+  languageName: node
+  linkType: hard
+
+"prosemirror-dropcursor@npm:1.8.2":
+  version: 1.8.2
+  resolution: "prosemirror-dropcursor@npm:1.8.2"
+  dependencies:
+    prosemirror-state: ^1.0.0
+    prosemirror-transform: ^1.1.0
+    prosemirror-view: ^1.1.0
+  checksum: f68b9c6826835e13e5100b8e68207f062c516a4d3c8d2acc04adc6c79fe9fea09a8b9f6ad1c62fa50d0f517029825d0f4fe8272171cd9220c853513db12b6747
+  languageName: node
+  linkType: hard
+
+"prosemirror-history@npm:1.5.0":
+  version: 1.5.0
+  resolution: "prosemirror-history@npm:1.5.0"
+  dependencies:
+    prosemirror-state: ^1.2.2
+    prosemirror-transform: ^1.0.0
+    prosemirror-view: ^1.31.0
+    rope-sequence: ^1.3.0
+  checksum: 6afb0e1d173e0364c223e7f960f5f4acd992c795c449aaf28678b67bedbb8bc0e360c9673b0b4c5b4a770114da73e417aa20f9745b0f744eb6aa08ef4f9e4e97
+  languageName: node
+  linkType: hard
+
 "prosemirror-keymap@npm:1.1.4":
   version: 1.1.4
   resolution: "prosemirror-keymap@npm:1.1.4"
@@ -2783,12 +3085,42 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prosemirror-keymap@npm:1.2.3":
+  version: 1.2.3
+  resolution: "prosemirror-keymap@npm:1.2.3"
+  dependencies:
+    prosemirror-state: ^1.0.0
+    w3c-keyname: ^2.2.0
+  checksum: 0a2eed2771d810448607ba54670ad6a110fc2991f4670e8a9008b35c164c5bf986e161a2b57b79ca3128d7e78e9ba74dbb75755de5d3598566c956cefb281c62
+  languageName: node
+  linkType: hard
+
+"prosemirror-markdown@npm:1.13.2":
+  version: 1.13.2
+  resolution: "prosemirror-markdown@npm:1.13.2"
+  dependencies:
+    "@types/markdown-it": ^14.0.0
+    markdown-it: ^14.0.0
+    prosemirror-model: ^1.25.0
+  checksum: ce9fcb3b13e4965f0591ad19154ea48be56490d89736c596a210c0611a7ebc7fb55919766e46bc18c6f9c701a311c21c446af8898e3ee4374660e9b4e098f7c8
+  languageName: node
+  linkType: hard
+
 "prosemirror-model@npm:1.14.3":
   version: 1.14.3
   resolution: "prosemirror-model@npm:1.14.3"
   dependencies:
     orderedmap: ^1.1.0
   checksum: fec7f91044244aff5ebd5df9878bfe833ee8f8a1aa6c0afb380905f8bb04f3ec30dbb4b4f9ff7138fc2c919cf284b0ed8c5e7155aaa7e2c27b5c8942a713a72f
+  languageName: node
+  linkType: hard
+
+"prosemirror-model@npm:1.25.4, prosemirror-model@npm:^1.20.0, prosemirror-model@npm:^1.21.0, prosemirror-model@npm:^1.25.0":
+  version: 1.25.4
+  resolution: "prosemirror-model@npm:1.25.4"
+  dependencies:
+    orderedmap: ^2.0.0
+  checksum: ab5aa609df78550480ad0b64620e48ec69d526c31ee1b0e71a58edc2f70c11b1f79ec455528441fabc297b8e6ae39658d2c8f802bea01e5a6c3c391fc2fb347e
   languageName: node
   linkType: hard
 
@@ -2811,6 +3143,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prosemirror-state@npm:1.4.4, prosemirror-state@npm:^1.2.2":
+  version: 1.4.4
+  resolution: "prosemirror-state@npm:1.4.4"
+  dependencies:
+    prosemirror-model: ^1.0.0
+    prosemirror-transform: ^1.0.0
+    prosemirror-view: ^1.27.0
+  checksum: 1b5dba46c27e312f9ad331cb2013da23554e841c148355db0089ba0058001a777cfde3edab84239342f6b99498b73e38a2d95768a06aa9dcf81bc3e50c536c72
+  languageName: node
+  linkType: hard
+
 "prosemirror-state@npm:^1.0.0":
   version: 1.4.2
   resolution: "prosemirror-state@npm:1.4.2"
@@ -2819,6 +3162,15 @@ __metadata:
     prosemirror-transform: ^1.0.0
     prosemirror-view: ^1.27.0
   checksum: a9e44df56aeb53fb99036742fbb63826380cf74cb115efffdd9f4e096bfb27dc7bf35c46d4b5fb5f260cd84e8bdc467aa5dc9540bd06f9f802de70b4873d8db4
+  languageName: node
+  linkType: hard
+
+"prosemirror-transform@npm:1.10.5":
+  version: 1.10.5
+  resolution: "prosemirror-transform@npm:1.10.5"
+  dependencies:
+    prosemirror-model: ^1.21.0
+  checksum: 6f5921e53a067156c9a52f216fcbbcf9300d031aab41a2e367c5739fbb61b3984a2ff025e25f1e2da221c0c79b8879d93b8192c6f09edb033c5152fcc364d089
   languageName: node
   linkType: hard
 
@@ -2837,6 +3189,25 @@ __metadata:
   dependencies:
     prosemirror-model: ^1.0.0
   checksum: 0b8ec0953e7cf942ba3253cf54dac0e5d93172e3906f0b13e4ab72cc446271ec7542afbeeac0f8b72adb092cc15047ee06a6d4ed17c8a471acff8d20ddd92193
+  languageName: node
+  linkType: hard
+
+"prosemirror-transform@npm:^1.10.2":
+  version: 1.11.0
+  resolution: "prosemirror-transform@npm:1.11.0"
+  dependencies:
+    prosemirror-model: ^1.21.0
+  checksum: 71989931b8909c822a41b74a7ae40d999b91a7cc53a500feabef782895cf9cc08ba624b15f4a0b656741cc6176a9a54fbfb47537009def4244cd9cdbd213cd9f
+  languageName: node
+  linkType: hard
+
+"prosemirror-utils@npm:1.2.2":
+  version: 1.2.2
+  resolution: "prosemirror-utils@npm:1.2.2"
+  peerDependencies:
+    prosemirror-model: ^1.19.2
+    prosemirror-state: ^1.4.3
+  checksum: c901d95e521071e3c051e940ed7c60960d1a46e88df10e9f62be7cff1ab6dca3d91e3fe36fd2cde5c24fb7de0b2a1167b1bcf6c5ace729dd8abb386a8552069d
   languageName: node
   linkType: hard
 
@@ -2861,6 +3232,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prosemirror-view@npm:1.41.5":
+  version: 1.41.5
+  resolution: "prosemirror-view@npm:1.41.5"
+  dependencies:
+    prosemirror-model: ^1.20.0
+    prosemirror-state: ^1.0.0
+    prosemirror-transform: ^1.1.0
+  checksum: ee47e9091a2f4ce2580daea3dc478ca93236fe7e364b22b0d39cbd8dfd3930d7014907025efd351cc3f60f9668df94ec20fe64beffdb5082e8b88d1f8e7d466e
+  languageName: node
+  linkType: hard
+
+"prosemirror-view@npm:^1.1.0, prosemirror-view@npm:^1.31.0":
+  version: 1.41.6
+  resolution: "prosemirror-view@npm:1.41.6"
+  dependencies:
+    prosemirror-model: ^1.20.0
+    prosemirror-state: ^1.0.0
+    prosemirror-transform: ^1.1.0
+  checksum: 68f6a8bd6652ee14c1bf11fdd688d1c23f51594c8ee3325f0ac66f566331faeb72528d95f16658abcaa8c87c5007e80d3436080c29a6c4604eaabf389a8d2252
+  languageName: node
+  linkType: hard
+
 "prosemirror-view@npm:^1.27.0":
   version: 1.30.1
   resolution: "prosemirror-view@npm:1.30.1"
@@ -2876,6 +3269,13 @@ __metadata:
   version: 1.9.0
   resolution: "psl@npm:1.9.0"
   checksum: 20c4277f640c93d393130673f392618e9a8044c6c7bf61c53917a0fddb4952790f5f362c6c730a9c32b124813e173733f9895add8d26f566ed0ea0654b2e711d
+  languageName: node
+  linkType: hard
+
+"punycode.js@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "punycode.js@npm:2.3.1"
+  checksum: 13466d7ed5e8dacdab8c4cc03837e7dd14218a59a40eb14a837f1f53ca396e18ef2c4ee6d7766b8ed2fc391d6a3ac489eebf2de83b3596f5a54e86df4a251b72
   languageName: node
   linkType: hard
 
@@ -3034,6 +3434,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rope-sequence@npm:^1.3.0":
+  version: 1.3.4
+  resolution: "rope-sequence@npm:1.3.4"
+  checksum: 95cca2f99af3d0d1f2f5e2781b6ae352c05e024c25f17f68a9b3ff31c651c8c46f096c70c46b561898e0bc94d261dfed60148f3aa009d1e98280e14ab0fe1438
+  languageName: node
+  linkType: hard
+
 "run-parallel@npm:^1.1.9":
   version: 1.2.0
   resolution: "run-parallel@npm:1.2.0"
@@ -3063,6 +3470,15 @@ __metadata:
   version: 2.1.2
   resolution: "safer-buffer@npm:2.1.2"
   checksum: cab8f25ae6f1434abee8d80023d7e72b598cf1327164ddab31003c51215526801e40b66c5e65d658a0af1e9d6478cadcb4c745f4bd6751f97d8644786c0978b0
+  languageName: node
+  linkType: hard
+
+"scheduler@npm:0.23.2":
+  version: 0.23.2
+  resolution: "scheduler@npm:0.23.2"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: 3e82d1f419e240ef6219d794ff29c7ee415fbdc19e038f680a10c067108e06284f1847450a210b29bbaf97b9d8a97ced5f624c31c681248ac84c80d56ad5a2c4
   languageName: node
   linkType: hard
 
@@ -3548,6 +3964,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"uc.micro@npm:^2.0.0, uc.micro@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "uc.micro@npm:2.1.0"
+  checksum: 37197358242eb9afe367502d4638ac8c5838b78792ab218eafe48287b0ed28aaca268ec0392cc5729f6c90266744de32c06ae938549aee041fc93b0f9672d6b2
+  languageName: node
+  linkType: hard
+
 "undici@npm:^5.12.0":
   version: 5.20.0
   resolution: "undici@npm:5.20.0"
@@ -3612,6 +4035,15 @@ __metadata:
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
   checksum: 474acf1146cb2701fe3b074892217553dfcf9a031280919ba1b8d651a068c9b15d863b7303cb15bd00a862b498e6cf4ad7b4a08fb134edd5a6f7641681cb54a2
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^3.1.0":
+  version: 3.4.0
+  resolution: "uuid@npm:3.4.0"
+  bin:
+    uuid: ./bin/uuid
+  checksum: 58de2feed61c59060b40f8203c0e4ed7fd6f99d42534a499f1741218a1dd0c129f4aa1de797bcf822c8ea5da7e4137aa3673431a96dae729047f7aca7b27866f
   languageName: node
   linkType: hard
 
